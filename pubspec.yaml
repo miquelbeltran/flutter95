@@ -1,8 +1,7 @@
 name: flutter95
-description: A new Flutter package project.
+description: Windows95 UI components for Flutter apps
 version: 0.0.1
-author:
-homepage:
+homepage: https://github.com/miquelbeltran/flutter95
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
