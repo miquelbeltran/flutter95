@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
 class Flutter95 {
@@ -13,16 +14,62 @@ class Flutter95 {
   static const secondary = Color(0xFF55aaaa);
   static const headerDark = Color(0xFF000080);
   static const headerLight = Color(0xFF1034a6);
+  static const white = Color(0xFFFFFFFF);
+  static const black = Color.fromRGBO(5, 6, 8, 1);
 
-  static Color get background => grays[2];
+  static Color get background => grays[1];
 
   static final elevatedDecoration = BoxDecoration(
     color: background,
     border: Border(
-      top: BorderSide(color: Flutter95.grays[1], width: 2),
-      left: BorderSide(color: Flutter95.grays[1], width: 2),
-      bottom: BorderSide(color: Flutter95.grays[3], width: 2),
-      right: BorderSide(color: Flutter95.grays[3], width: 2),
+      top: BorderSide(color: Flutter95.grays[0], width: 1),
+      left: BorderSide(color: Flutter95.grays[0], width: 1),
+      bottom: BorderSide(color: Flutter95.grays[2], width: 1),
+      right: BorderSide(color: Flutter95.grays[2], width: 1),
     ),
+  );
+
+  static final elevatedDecorationOutside = BoxDecoration(
+    color: background,
+    border: Border(
+      top: BorderSide(color: Flutter95.white, width: 1),
+      left: BorderSide(color: Flutter95.white, width: 1),
+      bottom: BorderSide(color: Flutter95.grays[3], width: 1),
+      right: BorderSide(color: Flutter95.grays[3], width: 1),
+    ),
+  );
+
+  static final pressedDecoration = BoxDecoration(
+    color: background,
+    border: Border(
+      top: BorderSide(color: Flutter95.grays[2], width: 1),
+      left: BorderSide(color: Flutter95.grays[2], width: 1),
+      bottom: BorderSide(color: Flutter95.grays[0], width: 1),
+      right: BorderSide(color: Flutter95.grays[0], width: 1),
+    ),
+  );
+
+  static final pressedDecorationOutside = BoxDecoration(
+    color: background,
+    border: Border(
+      top: BorderSide(color: Flutter95.grays[3], width: 1),
+      left: BorderSide(color: Flutter95.grays[3], width: 1),
+      bottom: BorderSide(color: Flutter95.white, width: 1),
+      right: BorderSide(color: Flutter95.white, width: 1),
+    ),
+  );
+
+  static const headerTextStyle = TextStyle(
+    color: Color(0xFFFFFFFF),
+    fontSize: 16,
+    decoration: TextDecoration.none,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const buttonTextStyle = TextStyle(
+    color: Flutter95.black,
+    fontSize: 14,
+    decoration: TextDecoration.none,
+    fontWeight: FontWeight.normal,
   );
 }

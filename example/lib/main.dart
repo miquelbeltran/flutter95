@@ -12,8 +12,15 @@ class Flutter95App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       color: Flutter95.background,
       home: Scaffold95(
-        title: 'Flutter95 v0.0.1',
-        body: Container(),
+        title: 'Flutter95 v0.0.3',
+        body: Column(
+          children: <Widget>[
+            Button95(
+              onTap: () {},
+              child: Text('Button95'),
+            )
+          ],
+        ),
       ),
     );
   }

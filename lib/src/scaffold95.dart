@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+import 'button95.dart';
 import 'globals.dart';
 
 class Scaffold95 extends StatelessWidget {
@@ -17,17 +17,31 @@ class Scaffold95 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: Flutter95.elevatedDecoration,
-      child: Column(
-        children: <Widget>[
-          _windowHeader(),
-          body,
-        ],
+      decoration: Flutter95.elevatedDecorationOutside,
+      child: Container(
+        decoration: Flutter95.elevatedDecoration,
+        child: Column(
+          children: <Widget>[
+            WindowHeader95(title: title),
+            const SizedBox(height: 4),
+            body,
+          ],
+        ),
       ),
     );
   }
+}
 
-  SafeArea _windowHeader() {
+class WindowHeader95 extends StatelessWidget {
+  const WindowHeader95({
+    @required this.title,
+    Key key,
+  }) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 2.0),
@@ -46,15 +60,10 @@ class Scaffold95 extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 title,
-                style: GoogleFonts.openSans(
-                  color: Colors.white,
-                  fontSize: 16,
-                  decoration: TextDecoration.none,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Flutter95.headerTextStyle,
               ),
               Spacer(),
-              CloseButton(),
+              CloseButton95(),
               const SizedBox(width: 4),
             ],
           ),
@@ -64,11 +73,14 @@ class Scaffold95 extends StatelessWidget {
   }
 }
 
-class CloseButton extends StatelessWidget {
+class CloseButton95 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: Flutter95.elevatedDecoration,
+    return Button95(
+      padding: EdgeInsets.zero,
+      onTap: () {
+        Navigator.of(context).pop();
+      },
       child: Icon(
         Icons.close,
         size: 20,
