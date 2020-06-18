@@ -4,6 +4,7 @@ import 'package:flutter95/src/utils.dart';
 import 'globals.dart';
 
 class TextField95 extends StatefulWidget {
+  // TODO: Expose more properties from TextField
   const TextField95({
     Key key,
     this.controller,

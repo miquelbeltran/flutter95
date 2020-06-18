@@ -38,6 +38,35 @@ Button95(
 )
 ```
 
+#### TextField95
+
+Material text field styled as a Windows95 text field.
+
+```dart
+TextField95()
+```
+
+#### Elevation95
+
+Creates an effect of deepness and elevation around Widgets.
+
+```dart
+Elevation95(
+  child: Text('Elevated Text')
+)
+```
+
+#### Flutter95.textStyle
+
+TextStyle ready to use that copies the Windows95 text style.
+
+```dart
+Text(
+  'Text with Flutter95.textStyle',
+  style: Flutter95.textStyle,
+);
+```
+
 ### Acknowledgments
 
 Heavily inspired by [React95](https://github.com/arturbien/React95).
