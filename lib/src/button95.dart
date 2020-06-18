@@ -43,7 +43,12 @@ class _Button95State extends State<Button95> {
               : Flutter95.elevatedDecoration,
           child: DefaultTextStyle(
             style: Flutter95.buttonTextStyle,
-            child: widget.child,
+            child: Padding(
+              padding: _tapped
+                  ? const EdgeInsets.only(top: 1.0, left: 1.0)
+                  : const EdgeInsets.all(0.0),
+              child: widget.child,
+            ),
           ),
         ),
       ),
