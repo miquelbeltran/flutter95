@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter95/src/utils.dart';
 
 import 'button95.dart';
 import 'globals.dart';
@@ -16,17 +17,13 @@ class Scaffold95 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: Flutter95.elevatedDecorationOutside,
-      child: Container(
-        decoration: Flutter95.elevatedDecoration,
-        child: Column(
-          children: <Widget>[
-            WindowHeader95(title: title),
-            const SizedBox(height: 4),
-            body,
-          ],
-        ),
+    return Elevation95(
+      child: Column(
+        children: <Widget>[
+          WindowHeader95(title: title),
+          const SizedBox(height: 4),
+          body,
+        ],
       ),
     );
   }
@@ -77,6 +74,7 @@ class CloseButton95 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Button95(
+      height: 24,
       padding: EdgeInsets.zero,
       onTap: () {
         Navigator.of(context).pop();

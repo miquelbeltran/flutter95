@@ -18,7 +18,16 @@ class Flutter95App extends StatelessWidget {
             Button95(
               onTap: () {},
               child: Text('Button95'),
-            )
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'Text with Flutter95.textStyle',
+              style: Flutter95.textStyle,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField95(),
+            ),
           ],
         ),
       ),

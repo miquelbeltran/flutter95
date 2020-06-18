@@ -66,7 +66,7 @@ class Flutter95 {
     fontWeight: FontWeight.bold,
   );
 
-  static const buttonTextStyle = TextStyle(
+  static const textStyle = TextStyle(
     color: Flutter95.black,
     fontSize: 14,
     decoration: TextDecoration.none,
