@@ -30,7 +30,9 @@ class _Button95State extends State<Button95> {
       child: GestureDetector(
         onTap: widget.onTap,
         onTapDown: (details) => setState(() {
-          _tapped = true;
+          if (widget.onTap != null) {
+            _tapped = true;
+          }
         }),
         onTapUp: (details) => setState(() {
           _tapped = false;
@@ -46,7 +48,9 @@ class _Button95State extends State<Button95> {
                 ? Flutter95.pressedDecoration
                 : Flutter95.elevatedDecoration,
             child: DefaultTextStyle(
-              style: Flutter95.textStyle,
+              style: widget.onTap != null
+                  ? Flutter95.textStyle
+                  : Flutter95.disabledTextStyle,
               child: Padding(
                 padding: _tapped
                     ? const EdgeInsets.only(top: 1.0, left: 1.0)

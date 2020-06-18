@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter95/src/toolbar95.dart';
 import 'package:flutter95/src/utils.dart';
 
 import 'button95.dart';
@@ -9,11 +10,13 @@ class Scaffold95 extends StatelessWidget {
   const Scaffold95({
     @required this.title,
     @required this.body,
+    this.toolbar,
     Key key,
   }) : super(key: key);
 
   final String title;
   final Widget body;
+  final Toolbar95 toolbar;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +25,8 @@ class Scaffold95 extends StatelessWidget {
         children: <Widget>[
           WindowHeader95(title: title),
           const SizedBox(height: 4),
+          if (toolbar != null) toolbar,
+          if (toolbar != null) const SizedBox(height: 4),
           body,
         ],
       ),

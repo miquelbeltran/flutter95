@@ -59,6 +59,11 @@ class Flutter95 {
     ),
   );
 
+  static final invisibleBorder = BoxDecoration(
+    color: background,
+    border: Border.all(color: background),
+  );
+
   static const headerTextStyle = TextStyle(
     color: Color(0xFFFFFFFF),
     fontSize: 16,
@@ -72,4 +77,16 @@ class Flutter95 {
     decoration: TextDecoration.none,
     fontWeight: FontWeight.normal,
   );
+
+  static final disabledTextStyle = TextStyle(
+      color: Flutter95.grays[3],
+      fontSize: 14,
+      decoration: TextDecoration.none,
+      fontWeight: FontWeight.normal,
+      shadows: [
+        Shadow(
+          color: Flutter95.grays[0],
+          offset: Offset(2, 2)
+        )
+      ]);
 }

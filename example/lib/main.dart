@@ -13,23 +13,51 @@ class Flutter95App extends StatelessWidget {
       color: Flutter95.background,
       home: Scaffold95(
         title: 'Flutter95',
-        body: Column(
-          children: <Widget>[
-            Button95(
-              onTap: () {},
-              child: Text('Button95'),
+        toolbar: Toolbar95(actions: [
+          Item95(
+            label: 'File',
+            onTap: () {},
+          ),
+          Item95(
+            label: 'Edit',
+            onTap: () {},
+          ),
+          Item95(
+            label: 'Save',
+          ),
+        ]),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          child: Elevation95(
+            type: Elevation95Type.down,
+            child: Column(
+              children: <Widget>[
+                const SizedBox(height: 4),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Button95(
+                      onTap: () {},
+                      child: Text('Button95'),
+                    ),
+                    Button95(
+                      child: Text('Disabled'),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'Text with Flutter95.textStyle',
+                  style: Flutter95.textStyle,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: TextField95(),
+                ),
+                _buildListView(),
+              ],
             ),
-            const SizedBox(height: 4),
-            Text(
-              'Text with Flutter95.textStyle',
-              style: Flutter95.textStyle,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: TextField95(),
-            ),
-            _buildListView(),
-          ],
+          ),
         ),
       ),
     );
