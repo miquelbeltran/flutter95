@@ -1,16 +1,11 @@
-## [0.0.4] - 2020/06/18
+## [0.0.5] - 2020/06/18
 
+* Scaffold95
+* Toolbar95
 * Elevation95
 * TextField95
-
-## [0.0.3] - 2020/06/18
-
 * Button95
 * Improved double-pixel border
-
-## [0.0.2] - 2020/06/18
-
-* Updated screenshot
 
 ## [0.0.1] - 2020/06/18
 

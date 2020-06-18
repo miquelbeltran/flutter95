@@ -12,14 +12,18 @@ Windows95 UI components for Flutter apps.
 
 #### Scaffold95
 
-Imitates Windows95 styled windows.
+Scaffold as a Windows95 styled window.
 
 * Provides title.
 * Provides a close button `CloseButton95` which performs a `Navigator.pop`.
+* Provides a toolbar that requires `Item95` action items.
 
 ```dart
 Scaffold95(
   title: 'Flutter95',
+  toolbar: Toolbar95(
+    actions: [Item95(label: 'File', onTap: () {})],
+  ),
   body: Container(),
 )
 ```
