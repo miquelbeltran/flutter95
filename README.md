@@ -6,7 +6,7 @@ Windows95 UI components for Flutter apps.
 
 ## Screenshots
 
-![Screenshot](/art/screenshot_v0.0.1.png?raw=true "Screenshot")
+<img src="https://github.com/miquelbeltran/flutter95/raw/master/art/screenshot_v0.0.1.png" alt="Screenshot" width="200"/>
 
 ## Components
 
