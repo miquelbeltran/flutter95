@@ -15,14 +15,24 @@ Windows95 UI components for Flutter apps.
 Scaffold as a Windows95 styled window.
 
 * Provides title.
-* Provides a close button `CloseButton95` which performs a `Navigator.pop`.
-* Provides a toolbar that requires `Item95` action items.
+* Optional: toolbar that requires `Item95` action items.
+
+<img src="https://github.com/miquelbeltran/flutter95/raw/master/art/scaffold95_2.png" alt="Screenshot" width="200"/>
+
+* If a scaffold `canPop` (meaning it is not a root of the app) then a close button appears.
+
+<img src="https://github.com/miquelbeltran/flutter95/raw/master/art/scaffold95_1.png" alt="Screenshot" width="200"/>
 
 ```dart
 Scaffold95(
   title: 'Flutter95',
   toolbar: Toolbar95(
-    actions: [Item95(label: 'File', onTap: () {})],
+    actions: [
+      Item95(
+        label: 'File', 
+        onTap: () {},
+      ),
+    ],
   ),
   body: Container(),
 )
@@ -34,6 +44,7 @@ Windows95 styled button.
 
 * Provides default text style for child widgets.
 * Provides default padding for children.
+* If `onTap` is null, acts as a disabled button.
 
 ```dart
 Button95(
@@ -44,7 +55,9 @@ Button95(
 
 #### TextField95
 
-Material text field styled as a Windows95 text field.
+TextField styled as a Windows95 text field.
+
+* Uses a Material TextField internally.
 
 ```dart
 TextField95()

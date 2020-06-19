@@ -42,6 +42,8 @@ class WindowHeader95 extends StatelessWidget {
 
   final String title;
 
+  bool _canPop(BuildContext context) => Navigator.of(context).canPop();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -65,7 +67,7 @@ class WindowHeader95 extends StatelessWidget {
                 style: Flutter95.headerTextStyle,
               ),
               Spacer(),
-              CloseButton95(),
+              if (_canPop(context)) CloseButton95(),
               const SizedBox(width: 4),
             ],
           ),
