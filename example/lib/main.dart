@@ -24,11 +24,17 @@ class MainScreen extends StatelessWidget {
       toolbar: Toolbar95(actions: [
         Item95(
           label: 'File',
-          onTap: () {},
+// TODO: WIP
+//          menu: [
+//            MenuItem95(
+//              value: 1,
+//              label: 'New',
+//            ),
+//          ],
         ),
         Item95(
           label: 'Edit',
-          onTap: () {},
+          onTap: (context) {},
         ),
         Item95(
           label: 'Save',

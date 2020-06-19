@@ -25,12 +25,16 @@ class Item95 extends StatefulWidget {
   const Item95({
     @required this.label,
     this.onTap,
+    this.menu,
     Key key,
-  }) : super(key: key);
+  })  : assert(!(menu != null && onTap != null)),
+        super(key: key);
 
   final String label;
 
-  final Function() onTap;
+  final List<MenuItem95<Object>> menu;
+
+  final Function(BuildContext) onTap;
 
   @override
   _Item95State createState() => _Item95State();
@@ -47,9 +51,9 @@ class _Item95State extends State<Item95> {
         minWidth: 48,
       ),
       child: GestureDetector(
-        onTap: widget.onTap,
+        onTap: () => _onTap(context),
         onTapDown: (details) => setState(() {
-          if (widget.onTap != null) {
+          if (_enabled() || widget.menu != null) {
             _tapped = true;
           }
         }),
@@ -71,7 +75,7 @@ class _Item95State extends State<Item95> {
             child: Center(
               child: Text(
                 widget.label,
-                style: widget.onTap != null
+                style: _enabled()
                     ? Flutter95.textStyle
                     : Flutter95.disabledTextStyle,
               ),
@@ -80,5 +84,17 @@ class _Item95State extends State<Item95> {
         ),
       ),
     );
+  }
+
+  bool _enabled() {
+    return widget.onTap != null || widget.menu != null;
+  }
+
+  _onTap(BuildContext context) {
+    if (widget.menu != null) {
+//      showMenu95(context, context.rect.shift(Offset(0, 24)), widget.menu);
+    } else if (_enabled()) {
+      return widget.onTap(context);
+    }
   }
 }
