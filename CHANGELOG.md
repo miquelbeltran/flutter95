@@ -1,3 +1,7 @@
+## [0.0.6] - 2020/06/18
+
+* Scaffold95 will show the close button if it canPop
+
 ## [0.0.5] - 2020/06/18
 
 * Scaffold95
