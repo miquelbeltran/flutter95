@@ -32,7 +32,7 @@ class Item95 extends StatefulWidget {
 
   final String label;
 
-  final List<MenuItem95<Object>> menu;
+  final Menu95 menu;
 
   final Function(BuildContext) onTap;
 
@@ -92,7 +92,10 @@ class _Item95State extends State<Item95> {
 
   _onTap(BuildContext context) {
     if (widget.menu != null) {
-//      showMenu95(context, context.rect.shift(Offset(0, 24)), widget.menu);
+      widget.menu.show(
+        context,
+        context.rect.shift(Offset(0, 24)),
+      );
     } else if (_enabled()) {
       return widget.onTap(context);
     }

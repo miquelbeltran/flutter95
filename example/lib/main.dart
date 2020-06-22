@@ -24,13 +24,7 @@ class MainScreen extends StatelessWidget {
       toolbar: Toolbar95(actions: [
         Item95(
           label: 'File',
-// TODO: WIP
-//          menu: [
-//            MenuItem95(
-//              value: 1,
-//              label: 'New',
-//            ),
-//          ],
+          menu: _buildMenu(),
         ),
         Item95(
           label: 'Edit',
@@ -76,6 +70,26 @@ class MainScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Menu95 _buildMenu() {
+    return Menu95(
+      items: [
+        MenuItem95(
+          value: 1,
+          label: 'New',
+        ),
+        MenuItem95(
+          value: 2,
+          label: 'Open',
+        ),
+        MenuItem95(
+          value: 3,
+          label: 'Exit',
+        ),
+      ],
+      onItemSelected: (item) {},
     );
   }
 

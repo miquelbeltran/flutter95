@@ -34,7 +34,7 @@ class Scaffold95 extends StatelessWidget {
   }
 }
 
-class WindowHeader95 extends StatelessWidget {
+class WindowHeader95 extends StatefulWidget {
   const WindowHeader95({
     @required this.title,
     Key key,
@@ -42,7 +42,17 @@ class WindowHeader95 extends StatelessWidget {
 
   final String title;
 
-  bool _canPop(BuildContext context) => Navigator.of(context).canPop();
+  @override
+  _WindowHeader95State createState() => _WindowHeader95State();
+}
+
+class _WindowHeader95State extends State<WindowHeader95> {
+  bool _canPop;
+
+  @override
+  void didChangeDependencies() {
+    _canPop = Navigator.of(context).canPop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,11 +73,11 @@ class WindowHeader95 extends StatelessWidget {
             children: [
               const SizedBox(width: 8),
               Text(
-                title,
+                widget.title,
                 style: Flutter95.headerTextStyle,
               ),
               Spacer(),
-              if (_canPop(context)) CloseButton95(),
+              if (_canPop) CloseButton95(),
               const SizedBox(width: 4),
             ],
           ),

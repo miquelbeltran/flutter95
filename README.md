@@ -38,6 +38,52 @@ Scaffold95(
 )
 ```
 
+#### Menu95
+
+Windows95 styled menu.
+
+<img src="https://github.com/miquelbeltran/flutter95/raw/master/art/menu95.png" alt="Screenshot" width="200"/>
+
+* Easy API wrapping Material's `showMenu`.
+
+```dart
+Menu95(
+  items: [
+    MenuItem95(
+      value: 1,
+      label: 'New',
+    ),
+    MenuItem95(
+      value: 2,
+      label: 'Open',
+    ),
+    MenuItem95(
+      value: 3,
+      label: 'Exit',
+    ),
+  ],
+  onItemSelected: (item) {},
+);
+```
+
+* Display using `show(context, position)`.
+
+```dart
+menu.show(
+  context,
+  Offset(50, 100),
+);
+```
+
+* Use it directly with Item95 to be positioned automatically.
+
+```dart
+Item95(
+  label: 'File',
+  menu: Menu95(...),
+),
+```
+
 #### Button95
 
 Windows95 styled button.
