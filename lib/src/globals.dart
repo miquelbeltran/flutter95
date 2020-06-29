@@ -86,7 +86,7 @@ class Flutter95 {
       shadows: [
         Shadow(
           color: Flutter95.grays[0],
-          offset: Offset(2, 2)
+          offset: Offset(1, 1)
         )
       ]);
 }

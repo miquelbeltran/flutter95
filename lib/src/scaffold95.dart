@@ -57,6 +57,7 @@ class _WindowHeader95State extends State<WindowHeader95> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      bottom: false,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 2.0),
         child: Container(
