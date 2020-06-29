@@ -19,43 +19,45 @@ class Flutter95 {
 
   static Color get background => grays[1];
 
+  static const _elevationWidth = 1.5;
+
   static final elevatedDecoration = BoxDecoration(
     color: background,
     border: Border(
-      top: BorderSide(color: Flutter95.grays[0], width: 1),
-      left: BorderSide(color: Flutter95.grays[0], width: 1),
-      bottom: BorderSide(color: Flutter95.grays[2], width: 1),
-      right: BorderSide(color: Flutter95.grays[2], width: 1),
+      top: BorderSide(color: Flutter95.grays[0], width: _elevationWidth),
+      left: BorderSide(color: Flutter95.grays[0], width: _elevationWidth),
+      bottom: BorderSide(color: Flutter95.grays[2], width: _elevationWidth),
+      right: BorderSide(color: Flutter95.grays[2], width: _elevationWidth),
     ),
   );
 
   static final elevatedDecorationOutside = BoxDecoration(
     color: background,
     border: Border(
-      top: BorderSide(color: Flutter95.white, width: 1),
-      left: BorderSide(color: Flutter95.white, width: 1),
-      bottom: BorderSide(color: Flutter95.grays[3], width: 1),
-      right: BorderSide(color: Flutter95.grays[3], width: 1),
+      top: BorderSide(color: Flutter95.white, width: _elevationWidth),
+      left: BorderSide(color: Flutter95.white, width: _elevationWidth),
+      bottom: BorderSide(color: Flutter95.grays[3], width: _elevationWidth),
+      right: BorderSide(color: Flutter95.grays[3], width: _elevationWidth),
     ),
   );
 
   static final pressedDecoration = BoxDecoration(
     color: background,
     border: Border(
-      top: BorderSide(color: Flutter95.grays[2], width: 1),
-      left: BorderSide(color: Flutter95.grays[2], width: 1),
-      bottom: BorderSide(color: Flutter95.grays[0], width: 1),
-      right: BorderSide(color: Flutter95.grays[0], width: 1),
+      top: BorderSide(color: Flutter95.grays[2], width: _elevationWidth),
+      left: BorderSide(color: Flutter95.grays[2], width: _elevationWidth),
+      bottom: BorderSide(color: Flutter95.grays[0], width: _elevationWidth),
+      right: BorderSide(color: Flutter95.grays[0], width: _elevationWidth),
     ),
   );
 
   static final pressedDecorationOutside = BoxDecoration(
     color: background,
     border: Border(
-      top: BorderSide(color: Flutter95.grays[3], width: 1),
-      left: BorderSide(color: Flutter95.grays[3], width: 1),
-      bottom: BorderSide(color: Flutter95.white, width: 1),
-      right: BorderSide(color: Flutter95.white, width: 1),
+      top: BorderSide(color: Flutter95.grays[3], width: _elevationWidth),
+      left: BorderSide(color: Flutter95.grays[3], width: _elevationWidth),
+      bottom: BorderSide(color: Flutter95.white, width: _elevationWidth),
+      right: BorderSide(color: Flutter95.white, width: _elevationWidth),
     ),
   );
 
