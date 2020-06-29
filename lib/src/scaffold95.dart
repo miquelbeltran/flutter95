@@ -22,6 +22,7 @@ class Scaffold95 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Elevation95(
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           WindowHeader95(title: title),
           const SizedBox(height: 4),
@@ -51,6 +52,7 @@ class _WindowHeader95State extends State<WindowHeader95> {
 
   @override
   void didChangeDependencies() {
+    super.didChangeDependencies();
     _canPop = Navigator.of(context).canPop();
   }
 
@@ -59,7 +61,7 @@ class _WindowHeader95State extends State<WindowHeader95> {
     return SafeArea(
       bottom: false,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 2.0),
+        padding: const EdgeInsets.only(top: 2.0, left: 2.0, right: 2.0),
         child: Container(
           height: 33,
           decoration: BoxDecoration(

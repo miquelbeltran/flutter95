@@ -2,6 +2,7 @@ library flutter95;
 
 export 'src/button95.dart';
 export 'src/context.dart';
+export 'src/dialog95.dart';
 export 'src/globals.dart';
 export 'src/menu95.dart';
 export 'src/scaffold95.dart';

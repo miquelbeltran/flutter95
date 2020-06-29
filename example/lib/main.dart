@@ -61,6 +61,18 @@ class MainScreen extends StatelessWidget {
                 'Text with Flutter95.textStyle',
                 style: Flutter95.textStyle,
               ),
+              const SizedBox(height: 4),
+              Button95(
+                onTap: () {
+                  showDialog95(
+                    context: context,
+                    title: 'Error',
+                    message: 'Task failed successfully',
+                  );
+                },
+                child: Text('Show Error'),
+              ),
+              const SizedBox(height: 4),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: TextField95(),
