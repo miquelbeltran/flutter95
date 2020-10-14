@@ -4,20 +4,26 @@ import 'package:flutter95/src/utils.dart';
 import 'globals.dart';
 
 class TextField95 extends StatefulWidget {
-  // TODO: Expose more properties from TextField
   const TextField95({
     Key key,
     this.controller,
+    this.backgroundColor = Flutter95.white,
+    this.height = 32,
+    this.multiline = false,
+    this.maxLines = 1,
   }) : super(key: key);
 
   final TextEditingController controller;
+  final double height;
+  final Color backgroundColor;
+  final bool multiline;
+  final int maxLines;
 
   @override
   _TextField95State createState() => _TextField95State();
 }
 
 class _TextField95State extends State<TextField95> {
-
   @override
   Widget build(BuildContext context) {
     return Elevation95(
@@ -25,11 +31,14 @@ class _TextField95State extends State<TextField95> {
       child: Container(
         padding: EdgeInsets.all(4.0),
         color: Flutter95.white,
-        height: 32,
+        height: widget.height,
         child: Material(
-          color: Flutter95.white,
+          color: widget.backgroundColor,
           child: TextField(
             controller: widget.controller,
+            maxLines: widget.maxLines,
+            keyboardType:
+                widget.multiline ? TextInputType.multiline : TextInputType.text,
             decoration: InputDecoration(
               isDense: true,
               border: InputBorder.none,
