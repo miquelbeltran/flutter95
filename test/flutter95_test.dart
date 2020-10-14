@@ -35,4 +35,36 @@ void main() {
       expect(find.text('button'), findsOneWidget);
     });
   });
+
+  group('TextField95', () {
+    testWidgets('Can build widget', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: TextField95(
+            key: Key('TextField95Key'),
+          ),
+        ),
+      );
+      expect(find.byKey(Key('TextField95Key')), findsOneWidget);
+    });
+  });
+
+  group('Toolbar95', () {
+    testWidgets('Can build widget', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Toolbar95(
+            key: Key('Toolbar95Key'),
+            actions: [
+              Item95(label: 'Test 1'),
+              Item95(label: 'Test 2'),
+              Item95(label: 'Test 3'),
+            ],
+          ),
+        ),
+      );
+      expect(find.byKey(Key('Toolbar95Key')), findsOneWidget);
+      expect(find.byType(Item95), findsNWidgets(3));
+    });
+  });
 }
