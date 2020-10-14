@@ -77,6 +77,15 @@ class MainScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: TextField95(),
               ),
+              const SizedBox(height: 4),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: TextField95(
+                  height: 150,
+                  maxLines: 10,
+                  multiline: true,
+                ),
+              ),
               _buildListView(),
             ],
           ),
@@ -117,7 +126,7 @@ class MainScreen extends StatelessWidget {
       child: Elevation95(
         type: Elevation95Type.down,
         child: SizedBox(
-          height: 100,
+          height: 150,
           child: ListView.builder(
             padding: EdgeInsets.zero,
             itemCount: 100,
