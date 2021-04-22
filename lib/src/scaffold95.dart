@@ -23,13 +23,13 @@ class Scaffold95 extends StatelessWidget {
     return Elevation95(
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: <Widget?>[
+        children: <Widget>[
           WindowHeader95(title: title),
           const SizedBox(height: 4),
-          if (toolbar != null) toolbar,
+          if (toolbar != null) toolbar!,
           if (toolbar != null) const SizedBox(height: 4),
           body,
-        ] as List<Widget>,
+        ],
       ),
     );
   }
