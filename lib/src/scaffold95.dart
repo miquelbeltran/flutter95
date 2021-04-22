@@ -1,35 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter95/src/toolbar95.dart';
-import 'package:flutter95/src/utils.dart';
 
 import 'button95.dart';
 import 'globals.dart';
+import 'toolbar95.dart';
+import 'utils.dart';
 
 class Scaffold95 extends StatelessWidget {
   const Scaffold95({
-    @required this.title,
-    @required this.body,
+    required this.title,
+    required this.body,
     this.toolbar,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
-  final String title;
+  final String? title;
   final Widget body;
-  final Toolbar95 toolbar;
+  final Toolbar95? toolbar;
 
   @override
   Widget build(BuildContext context) {
     return Elevation95(
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
+        children: <Widget?>[
           WindowHeader95(title: title),
           const SizedBox(height: 4),
           if (toolbar != null) toolbar,
           if (toolbar != null) const SizedBox(height: 4),
           body,
-        ],
+        ] as List<Widget>,
       ),
     );
   }
@@ -37,18 +37,18 @@ class Scaffold95 extends StatelessWidget {
 
 class WindowHeader95 extends StatefulWidget {
   const WindowHeader95({
-    @required this.title,
-    Key key,
+    required this.title,
+    Key? key,
   }) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _WindowHeader95State createState() => _WindowHeader95State();
 }
 
 class _WindowHeader95State extends State<WindowHeader95> {
-  bool _canPop;
+  late bool _canPop;
 
   @override
   void didChangeDependencies() {
@@ -76,7 +76,7 @@ class _WindowHeader95State extends State<WindowHeader95> {
             children: [
               const SizedBox(width: 8),
               Text(
-                widget.title,
+                widget.title!,
                 style: Flutter95.headerTextStyle,
               ),
               Spacer(),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter95/src/utils.dart';
 
 import 'globals.dart';
+import 'utils.dart';
 
 class TextField95 extends StatefulWidget {
   const TextField95({
-    Key key,
+    Key? key,
     this.controller,
     this.backgroundColor = Flutter95.white,
     this.height = 32,
@@ -13,7 +13,7 @@ class TextField95 extends StatefulWidget {
     this.maxLines = 1,
   }) : super(key: key);
 
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final double height;
   final Color backgroundColor;
   final bool multiline;

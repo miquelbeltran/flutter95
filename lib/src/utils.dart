@@ -6,9 +6,9 @@ enum Elevation95Type { up, down }
 
 class Elevation95 extends StatelessWidget {
   const Elevation95({
-    @required this.child,
+    required this.child,
     this.type = Elevation95Type.up,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   final Widget child;
