@@ -38,8 +38,7 @@ class Menu95<T> {
   Menu95({
     required this.items,
     required this.onItemSelected,
-  })   : assert(items != null),
-        assert(onItemSelected != null);
+  });
 
   final List<MenuItem95<T>> items;
 

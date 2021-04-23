@@ -5,18 +5,18 @@ import '../flutter95.dart';
 
 class Toolbar95 extends StatelessWidget {
   Toolbar95({
-    this.actions,
+    required this.actions,
     Key? key,
   }) : super(key: key);
 
-  final List<Item95>? actions;
+  final List<Item95> actions;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 2.0),
       child: Row(
-        children: actions!,
+        children: actions,
       ),
     );
   }
@@ -63,22 +63,14 @@ class _Item95State extends State<Item95> {
         }),
         onTapCancel: () => setState(() => _tapped = false),
         child: Container(
-          decoration: _tapped
-              ? Flutter95.pressedDecorationOutside
-              : Flutter95.invisibleBorder,
+          decoration: _tapped ? Flutter95.pressedDecorationOutside : Flutter95.invisibleBorder,
           child: Container(
-            decoration: _tapped
-                ? Flutter95.pressedDecoration
-                : Flutter95.invisibleBorder,
-            padding: _tapped
-                ? const EdgeInsets.only(top: 1.0, left: 1.0)
-                : const EdgeInsets.all(0.0),
+            decoration: _tapped ? Flutter95.pressedDecoration : Flutter95.invisibleBorder,
+            padding: _tapped ? const EdgeInsets.only(top: 1.0, left: 1.0) : const EdgeInsets.all(0.0),
             child: Center(
               child: Text(
                 widget.label,
-                style: _enabled()
-                    ? Flutter95.textStyle
-                    : Flutter95.disabledTextStyle,
+                style: _enabled() ? Flutter95.textStyle : Flutter95.disabledTextStyle,
               ),
             ),
           ),

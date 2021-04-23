@@ -14,7 +14,7 @@ class Scaffold95 extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final String? title;
+  final String title;
   final Widget body;
   final Toolbar95? toolbar;
 
