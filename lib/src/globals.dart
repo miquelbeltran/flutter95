@@ -81,14 +81,15 @@ class Flutter95 {
   );
 
   static final disabledTextStyle = TextStyle(
-      color: Flutter95.grays[3],
-      fontSize: 14,
-      decoration: TextDecoration.none,
-      fontWeight: FontWeight.normal,
-      shadows: [
-        Shadow(
-          color: Flutter95.grays[0],
-          offset: Offset(1, 1)
-        )
-      ]);
+    color: Flutter95.grays[3],
+    fontSize: 14,
+    decoration: TextDecoration.none,
+    fontWeight: FontWeight.normal,
+    shadows: [
+      Shadow(
+        color: Flutter95.grays[0],
+        offset: Offset(1, 1),
+      ),
+    ],
+  );
 }

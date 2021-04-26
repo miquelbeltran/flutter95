@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter95/flutter95.dart';
 
+import '../flutter95.dart';
 import 'globals.dart';
 
-Future<T> showMenu95<T>(
+Future<T?> showMenu95<T>(
   BuildContext context,
   RelativeRect position,
   List<MenuItem95> items,
@@ -36,14 +36,13 @@ Future<T> showMenu95<T>(
 
 class Menu95<T> {
   Menu95({
-    @required this.items,
-    @required this.onItemSelected,
-  })  : assert(items != null),
-        assert(onItemSelected != null);
+    required this.items,
+    required this.onItemSelected,
+  });
 
   final List<MenuItem95<T>> items;
 
-  final Function(T) onItemSelected;
+  final Function(T?) onItemSelected;
 
   void show(
     BuildContext context,
@@ -59,9 +58,9 @@ class Menu95<T> {
 
 class MenuItem95<T> {
   MenuItem95({
-    @required this.value,
-    @required this.label,
-  })  : assert(value != null),
+    required this.value,
+    required this.label,
+  })   : assert(value != null),
         assert(label != null);
 
   final T value;

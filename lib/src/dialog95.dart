@@ -5,11 +5,11 @@ import '../flutter95.dart';
 
 const _goldenRatio = 1.618;
 
-Future<T> showDialog95<T>({
-  @required BuildContext context,
-  String title,
-  String message,
-  List<Action95> actions,
+Future<T?> showDialog95<T>({
+  required BuildContext context,
+  required String title,
+  required String message,
+  List<Action95>? actions,
 }) {
   if (actions == null || actions.isEmpty) {
     actions = [Action95.OK];
@@ -81,10 +81,9 @@ Flexible _message(String message) {
 
 class Action95<T> {
   const Action95({
-    @required this.value,
-    @required this.label,
-  })  : assert(value != null),
-        assert(label != null);
+    required this.value,
+    required this.label,
+  });
 
   final T value;
   final String label;
