@@ -60,9 +60,8 @@ class MenuItem95<T> {
   MenuItem95({
     required this.value,
     required this.label,
-  })   : assert(value != null),
-        assert(label != null);
+  }) : assert(value != null);
 
   final T value;
-  final T label;
+  final String label;
 }
