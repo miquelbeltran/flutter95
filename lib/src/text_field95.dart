@@ -53,6 +53,7 @@ class _TextField95State extends State<TextField95> {
             ),
             cursorColor: Flutter95.black,
             style: Flutter95.textStyle,
+            obscuringCharacter: '*',
             obscureText: widget.obscureText,
             focusNode: widget.focusNode,
             onChanged: widget.onChanged,
