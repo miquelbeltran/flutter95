@@ -16,7 +16,13 @@ class Toolbar95 extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 2.0),
       child: Row(
-        children: actions,
+        children: [
+          for (var action in actions)
+            Padding(
+              padding: EdgeInsets.only(right: 6),
+              child: action,
+            )
+        ],
       ),
     );
   }
@@ -49,7 +55,6 @@ class _Item95State extends State<Item95> {
     return ConstrainedBox(
       constraints: BoxConstraints(
         maxHeight: 24,
-        minWidth: 48,
       ),
       child: GestureDetector(
         onTap: () => _onTap(context),
