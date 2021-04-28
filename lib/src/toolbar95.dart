@@ -49,7 +49,6 @@ class _Item95State extends State<Item95> {
     return ConstrainedBox(
       constraints: BoxConstraints(
         maxHeight: 24,
-        minWidth: 48,
       ),
       child: GestureDetector(
         onTap: () => _onTap(context),
@@ -70,9 +69,10 @@ class _Item95State extends State<Item95> {
             decoration: _tapped
                 ? Flutter95.pressedDecoration
                 : Flutter95.invisibleBorder,
-            padding: _tapped
-                ? const EdgeInsets.only(top: 1.0, left: 1.0)
-                : const EdgeInsets.all(0.0),
+            padding: const EdgeInsets.symmetric(horizontal: 2) +
+                (_tapped
+                    ? const EdgeInsets.only(top: 1.0, left: 1.0)
+                    : const EdgeInsets.all(0.0)),
             child: Center(
               child: Text(
                 widget.label,
