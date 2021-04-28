@@ -16,13 +16,7 @@ class Toolbar95 extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 2.0),
       child: Row(
-        children: [
-          for (var action in actions)
-            Padding(
-              padding: EdgeInsets.only(right: 6),
-              child: action,
-            )
-        ],
+        children: actions,
       ),
     );
   }
@@ -75,9 +69,10 @@ class _Item95State extends State<Item95> {
             decoration: _tapped
                 ? Flutter95.pressedDecoration
                 : Flutter95.invisibleBorder,
-            padding: _tapped
-                ? const EdgeInsets.only(top: 1.0, left: 1.0)
-                : const EdgeInsets.all(0.0),
+            padding: const EdgeInsets.symmetric(horizontal: 2) +
+                (_tapped
+                    ? const EdgeInsets.only(top: 1.0, left: 1.0)
+                    : const EdgeInsets.all(0.0)),
             child: Center(
               child: Text(
                 widget.label,
