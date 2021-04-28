@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'globals.dart';
 import 'utils.dart';
@@ -15,6 +16,7 @@ class TextField95 extends StatefulWidget {
     this.focusNode,
     this.onChanged,
     this.onSubmitted,
+    this.inputFormatters,
   }) : super(key: key);
 
   final TextEditingController? controller;
@@ -26,6 +28,7 @@ class TextField95 extends StatefulWidget {
   final FocusNode? focusNode;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   _TextField95State createState() => _TextField95State();
@@ -58,6 +61,7 @@ class _TextField95State extends State<TextField95> {
             focusNode: widget.focusNode,
             onChanged: widget.onChanged,
             onSubmitted: widget.onSubmitted,
+            inputFormatters: widget.inputFormatters,
           ),
         ),
       ),
