@@ -17,6 +17,7 @@ class TextField95 extends StatefulWidget {
     this.onChanged,
     this.onSubmitted,
     this.inputFormatters,
+    this.autofocus = false,
   }) : super(key: key);
 
   final TextEditingController? controller;
@@ -29,6 +30,7 @@ class TextField95 extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
   final List<TextInputFormatter>? inputFormatters;
+  final bool autofocus;
 
   @override
   _TextField95State createState() => _TextField95State();
@@ -62,6 +64,7 @@ class _TextField95State extends State<TextField95> {
             onChanged: widget.onChanged,
             onSubmitted: widget.onSubmitted,
             inputFormatters: widget.inputFormatters,
+            autofocus: widget.autofocus,
           ),
         ),
       ),
