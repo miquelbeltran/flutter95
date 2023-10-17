@@ -1,3 +1,10 @@
+## [1.1.0] - 2023/10/17
+
+- Update to Dart 3
+- Allow close button on Scaffold95 that cannot pop
+
+Thanks @filiph for the contributions!
+
 ## [1.0.0] - 2021/04/22
 
 - Migrated to null safety
