@@ -1,9 +1,11 @@
 ## [1.1.0] - 2023/10/17
 
-- Update to Dart 3
-- Allow close button on Scaffold95 that cannot pop
+- various items by @lukepighetti in #9
+- add TextField95 autofocus by @lukepighetti in #10
+- Update to Dart 3 by @filiph in #12
+- Allow close button on Scaffold95 that cannot pop by @filiph in #14
 
-Thanks @filiph for the contributions!
+Thanks @lukepighetti @filiph for the contributions!
 
 ## [1.0.0] - 2021/04/22
 
