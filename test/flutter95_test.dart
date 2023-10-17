@@ -17,6 +17,22 @@ void main() {
       expect(find.text('test'), findsOneWidget);
       expect(find.text('other'), findsOneWidget);
     });
+
+    testWidgets('shows close button when callback provided', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold95(
+            title: 'test',
+            body: Text('other'),
+            onClosePressed: (context) {
+              // Pass.
+            },
+          ),
+        ),
+      );
+
+      expect(find.byType(CloseButton95), findsOneWidget);
+    });
   });
 
   group('Button95', () {
