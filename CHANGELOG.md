@@ -1,3 +1,7 @@
+## [1.1.1] - 2023/10/17
+
+- Changelog reformat
+
 ## [1.1.0] - 2023/10/17
 
 - various items by @lukepighetti in #9
