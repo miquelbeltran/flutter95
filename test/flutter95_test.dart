@@ -81,4 +81,27 @@ void main() {
       expect(find.byType(Item95), findsNWidgets(3));
     });
   });
+
+  group('Tooltip95', () {
+    testWidgets('Can show tooltip', (tester) async {
+      String message = 'Hello world';
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Tooltip95(
+            message: message,
+            triggerMode: TooltipTriggerMode.longPress,
+            child: Text(
+              'long press to show tooltip',
+              style: Flutter95.textStyle,
+            ),
+          ),
+        ),
+      );
+
+      await tester.longPress(find.byType(Text));
+      await tester.pump();
+      expect(find.byTooltip(message), findsOneWidget);
+    });
+  });
 }
