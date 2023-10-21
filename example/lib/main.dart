@@ -2,21 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter95/flutter95.dart';
 
 void main() {
-  runApp(Flutter95App());
+  runApp(const Flutter95App());
 }
 
 class Flutter95App extends StatelessWidget {
+  const Flutter95App({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       color: Flutter95.background,
-      home: MainScreen(),
+      home: const MainScreen(),
     );
   }
 }
 
 class MainScreen extends StatelessWidget {
+  const MainScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold95(
@@ -30,7 +34,7 @@ class MainScreen extends StatelessWidget {
           label: 'Edit',
           onTap: (context) {},
         ),
-        Item95(
+        const Item95(
           label: 'Save',
         ),
       ]),
@@ -47,17 +51,18 @@ class MainScreen extends StatelessWidget {
                   Button95(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ScreenThatCanPop()));
+                        builder: (context) => const ScreenThatCanPop(),
+                      ));
                     },
-                    child: Text('Button95'),
+                    child: const Text('Button95'),
                   ),
-                  Button95(
+                  const Button95(
                     child: Text('Disabled'),
                   ),
                 ],
               ),
               const SizedBox(height: 4),
-              Text(
+              const Text(
                 'Text with Flutter95.textStyle',
                 style: Flutter95.textStyle,
               ),
@@ -70,16 +75,16 @@ class MainScreen extends StatelessWidget {
                     message: 'Task failed successfully',
                   );
                 },
-                child: Text('Show Error'),
+                child: const Text('Show Error'),
               ),
               const SizedBox(height: 4),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: TextField95(),
               ),
               const SizedBox(height: 4),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: TextField95(
                   height: 150,
                   maxLines: 10,
@@ -149,6 +154,8 @@ class MainScreen extends StatelessWidget {
 }
 
 class ScreenThatCanPop extends StatelessWidget {
+  const ScreenThatCanPop({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold95(

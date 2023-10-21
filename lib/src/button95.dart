@@ -4,12 +4,12 @@ import 'globals.dart';
 
 class Button95 extends StatefulWidget {
   const Button95({
+    super.key,
     this.onTap,
     this.child,
     this.padding = const EdgeInsets.symmetric(vertical: 4, horizontal: 20),
     this.height = 30,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final Function()? onTap;
   final Widget? child;
@@ -17,7 +17,7 @@ class Button95 extends StatefulWidget {
   final double height;
 
   @override
-  _Button95State createState() => _Button95State();
+  State<Button95> createState() => _Button95State();
 }
 
 class _Button95State extends State<Button95> {

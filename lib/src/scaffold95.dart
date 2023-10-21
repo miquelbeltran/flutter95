@@ -7,12 +7,12 @@ import 'utils.dart';
 
 class Scaffold95 extends StatelessWidget {
   const Scaffold95({
+    super.key,
     required this.title,
     required this.body,
     this.toolbar,
     this.onClosePressed,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final String title;
   final Widget body;
@@ -45,17 +45,17 @@ class Scaffold95 extends StatelessWidget {
 
 class WindowHeader95 extends StatefulWidget {
   const WindowHeader95({
+    super.key,
     required this.title,
     this.onClosePressed,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final String? title;
 
   final void Function(BuildContext)? onClosePressed;
 
   @override
-  _WindowHeader95State createState() => _WindowHeader95State();
+  State<WindowHeader95> createState() => _WindowHeader95State();
 }
 
 class _WindowHeader95State extends State<WindowHeader95> {
@@ -75,7 +75,7 @@ class _WindowHeader95State extends State<WindowHeader95> {
         padding: const EdgeInsets.only(top: 2.0, left: 2.0, right: 2.0),
         child: Container(
           height: 33,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 Flutter95.headerDark,
@@ -90,11 +90,11 @@ class _WindowHeader95State extends State<WindowHeader95> {
                 widget.title!,
                 style: Flutter95.headerTextStyle,
               ),
-              Spacer(),
+              const Spacer(),
               if (widget.onClosePressed != null)
                 CloseButton95(onPressed: widget.onClosePressed!)
               else if (_canPop)
-                CloseButton95(),
+                const CloseButton95(),
               const SizedBox(width: 4),
             ],
           ),
@@ -107,7 +107,7 @@ class _WindowHeader95State extends State<WindowHeader95> {
 class CloseButton95 extends StatelessWidget {
   final void Function(BuildContext)? onPressed;
 
-  const CloseButton95({this.onPressed});
+  const CloseButton95({super.key, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +117,7 @@ class CloseButton95 extends StatelessWidget {
       onTap: onPressed != null
           ? () => onPressed!(context)
           : () => _defaultOnPressed(context),
-      child: Icon(
+      child: const Icon(
         Icons.close,
         size: 20,
       ),
