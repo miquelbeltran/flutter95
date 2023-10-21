@@ -17,6 +17,8 @@ class Flutter95App extends StatelessWidget {
 }
 
 class MainScreen extends StatelessWidget {
+  final ValueNotifier<bool> checkboxValue = ValueNotifier<bool>(false);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold95(
@@ -55,6 +57,30 @@ class MainScreen extends StatelessWidget {
                     child: Text('Disabled'),
                   ),
                 ],
+              ),
+              const SizedBox(height: 4),
+              ValueListenableBuilder(
+                valueListenable: checkboxValue,
+                builder: (context, value, child) {
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Checkbox95(
+                        value: value,
+                        label: "Enabled",
+                        onChanged: (value) {
+                          print(value);
+                          checkboxValue.value = (value ?? false);
+                        },
+                      ),
+                      const SizedBox(width: 20),
+                      Checkbox95(
+                        value: value,
+                        label: "Disabled",
+                      ),
+                    ],
+                  );
+                },
               ),
               const SizedBox(height: 4),
               Text(
