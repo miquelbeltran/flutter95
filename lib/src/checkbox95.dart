@@ -35,72 +35,72 @@ class Checkbox95 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget checkboxWidget = Elevation95(
+    final Widget checkboxWidget = Elevation95(
       type: Elevation95Type.down,
-      child: GestureDetector(
-        onTap: () {
+      child: ValueListenableBuilder<bool>(
+        builder: (context, isTapped, child) {
+          Color bgColor;
           if (enabled) {
-            _isChecked.value = !_isChecked.value;
-            onChanged?.call(_isChecked.value);
-          }
-        },
-        onTapDown: (details) {
-          _isTapped.value = true;
-        },
-        onTapUp: (details) {
-          _isTapped.value = false;
-        },
-        onTapCancel: () {
-          _isTapped.value = false;
-        },
-        child: ValueListenableBuilder<bool>(
-          builder: (context, isTapped, child) {
-            Color bgColor;
-            if (enabled) {
-              if (isTapped) {
-                bgColor = Flutter95.background;
-              } else {
-                bgColor = Flutter95.white;
-              }
-            } else {
+            if (isTapped) {
               bgColor = Flutter95.background;
+            } else {
+              bgColor = Flutter95.white;
             }
+          } else {
+            bgColor = Flutter95.background;
+          }
 
+          return Container(
+            color: bgColor,
+            child: child,
+          );
+        },
+        valueListenable: _isTapped,
+        child: ValueListenableBuilder<bool>(
+          valueListenable: _isChecked,
+          builder: (context, isChecked, child) {
             return Container(
-              color: bgColor,
-              child: child,
+              padding: const EdgeInsets.all(1),
+              child: isChecked
+                  ? enabled
+                      ? checkedEnabledIcon
+                      : checkedDisabledIcon
+                  : SizedBox(height: _checkSize, width: _checkSize),
             );
           },
-          valueListenable: _isTapped,
-          child: ValueListenableBuilder<bool>(
-            valueListenable: _isChecked,
-            builder: (context, isChecked, child) {
-              return Container(
-                padding: const EdgeInsets.all(1),
-                child: isChecked
-                    ? enabled
-                        ? checkedEnabledIcon
-                        : checkedDisabledIcon
-                    : SizedBox(height: _checkSize, width: _checkSize),
-              );
-            },
-          ),
         ),
       ),
     );
 
-    if (label != null) {
-      checkboxWidget = Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          checkboxWidget,
-          SizedBox(width: 6),
-          Text(label!, style: Flutter95.textStyle),
-        ],
-      );
-    }
+    final Widget checkboxWithOptionalLabel = (label != null)
+        ? Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              checkboxWidget,
+              SizedBox(width: 6),
+              Text(label!, style: Flutter95.textStyle),
+            ],
+          )
+        : checkboxWidget;
 
-    return checkboxWidget;
+    return GestureDetector(
+      onTap: () {
+        if (enabled) {
+          _isChecked.value = !_isChecked.value;
+          onChanged?.call(_isChecked.value);
+        }
+      },
+      onTapDown: (details) {
+        _isTapped.value = true;
+      },
+      onTapUp: (details) {
+        _isTapped.value = false;
+      },
+      onTapCancel: () {
+        _isTapped.value = false;
+      },
+      child: checkboxWithOptionalLabel,
+    );
   }
 }
