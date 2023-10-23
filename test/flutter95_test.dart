@@ -104,4 +104,31 @@ void main() {
       expect(find.byTooltip(message), findsOneWidget);
     });
   });
+
+  group('Checkbox95', () {
+    testWidgets('Can build enabled widget', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Checkbox95(
+            key: Key('checkbox95Key'),
+            value: true,
+            onChanged: (value) {},
+          ),
+        ),
+      );
+      expect(find.byKey(Key('checkbox95Key')), findsOneWidget);
+    });
+
+    testWidgets('Can build disabled widget', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Checkbox95(
+            key: Key('checkbox95Key'),
+            value: true,
+          ),
+        ),
+      );
+      expect(find.byKey(Key('checkbox95Key')), findsOneWidget);
+    });
+  });
 }

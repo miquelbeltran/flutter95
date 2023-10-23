@@ -99,6 +99,20 @@ Button95(
 )
 ```
 
+#### Checkbox95
+
+Windows95 styled checkbox
+
+* Provides label in windows95 style.
+* If `onChanged` is null, acts as a disabled checkbox.
+```dart
+Checkbox95(
+    value: value,
+    label: "Some Label", // optional, if null no label is shown
+    onChanged: (value) {}, // optional, if null acts as a disabled checkbox
+)
+```
+
 #### TextField95
 
 TextField styled as a Windows95 text field.
