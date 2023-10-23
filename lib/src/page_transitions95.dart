@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 final pageTransitions95 = PageTransitionsTheme(builders: {
   for (var platform in TargetPlatform.values)
-    platform: _PageTransitionsBuilder(),
+    platform: const _PageTransitionsBuilder(),
 });
 
 class _PageTransitionsBuilder extends PageTransitionsBuilder {
@@ -22,11 +22,10 @@ class _PageTransitionsBuilder extends PageTransitionsBuilder {
 }
 
 class _PageTransition extends StatelessWidget {
-  _PageTransition({
-    Key? key,
+  const _PageTransition({
     required Animation<double> routeAnimation,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Widget child;
 

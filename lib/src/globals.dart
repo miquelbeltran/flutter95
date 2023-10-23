@@ -32,8 +32,8 @@ class Flutter95 {
   static final elevatedDecorationOutside = BoxDecoration(
     color: background,
     border: Border(
-      top: BorderSide(color: Flutter95.white, width: _elevationWidth),
-      left: BorderSide(color: Flutter95.white, width: _elevationWidth),
+      top: const BorderSide(color: Flutter95.white, width: _elevationWidth),
+      left: const BorderSide(color: Flutter95.white, width: _elevationWidth),
       bottom: BorderSide(color: Flutter95.grays[3], width: _elevationWidth),
       right: BorderSide(color: Flutter95.grays[3], width: _elevationWidth),
     ),
@@ -54,8 +54,8 @@ class Flutter95 {
     border: Border(
       top: BorderSide(color: Flutter95.grays[3], width: _elevationWidth),
       left: BorderSide(color: Flutter95.grays[3], width: _elevationWidth),
-      bottom: BorderSide(color: Flutter95.white, width: _elevationWidth),
-      right: BorderSide(color: Flutter95.white, width: _elevationWidth),
+      bottom: const BorderSide(color: Flutter95.white, width: _elevationWidth),
+      right: const BorderSide(color: Flutter95.white, width: _elevationWidth),
     ),
   );
 
@@ -86,7 +86,7 @@ class Flutter95 {
     shadows: [
       Shadow(
         color: Flutter95.grays[0],
-        offset: Offset(1, 1),
+        offset: const Offset(1, 1),
       ),
     ],
   );

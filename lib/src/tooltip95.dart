@@ -3,7 +3,7 @@ import 'package:flutter95/src/globals.dart';
 
 class Tooltip95 extends StatelessWidget {
   const Tooltip95({
-    Key? key,
+    super.key,
     required this.child,
     required this.message,
     this.triggerMode,
@@ -23,7 +23,6 @@ class Tooltip95 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tooltip(
       key: key,
-      child: child,
       message: message,
       margin: const EdgeInsets.all(8.0),
       textAlign: TextAlign.center,
@@ -41,7 +40,7 @@ class Tooltip95 extends StatelessWidget {
         ),
         borderRadius: BorderRadius.zero,
         color: Flutter95.tooltipBackground,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Flutter95.black,
             offset: Offset(2.0, 2.0),
@@ -50,6 +49,7 @@ class Tooltip95 extends StatelessWidget {
       ),
       triggerMode: triggerMode,
       textStyle: Flutter95.textStyle,
+      child: child,
     );
   }
 }

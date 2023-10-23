@@ -65,7 +65,7 @@ class Checkbox95 extends StatelessWidget {
                   ? enabled
                       ? checkedEnabledIcon
                       : checkedDisabledIcon
-                  : SizedBox(height: _checkSize, width: _checkSize),
+                  : const SizedBox(height: _checkSize, width: _checkSize),
             );
           },
         ),
@@ -78,7 +78,7 @@ class Checkbox95 extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               checkboxWidget,
-              SizedBox(width: 6),
+              const SizedBox(width: 6),
               Text(label!, style: Flutter95.textStyle),
             ],
           )

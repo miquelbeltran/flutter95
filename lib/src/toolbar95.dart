@@ -3,10 +3,10 @@ import 'package:flutter/widgets.dart';
 import '../flutter95.dart';
 
 class Toolbar95 extends StatelessWidget {
-  Toolbar95({
+  const Toolbar95({
+    super.key,
     required this.actions,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final List<Item95> actions;
 
@@ -23,12 +23,11 @@ class Toolbar95 extends StatelessWidget {
 
 class Item95 extends StatefulWidget {
   const Item95({
+    super.key,
     required this.label,
     this.onTap,
     this.menu,
-    Key? key,
-  })  : assert(!(menu != null && onTap != null)),
-        super(key: key);
+  }) : assert(!(menu != null && onTap != null));
 
   final String label;
 
@@ -37,7 +36,7 @@ class Item95 extends StatefulWidget {
   final Function(BuildContext)? onTap;
 
   @override
-  _Item95State createState() => _Item95State();
+  State<Item95> createState() => _Item95State();
 }
 
 class _Item95State extends State<Item95> {
@@ -46,7 +45,7 @@ class _Item95State extends State<Item95> {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(
+      constraints: const BoxConstraints(
         maxHeight: 24,
       ),
       child: GestureDetector(
@@ -94,7 +93,7 @@ class _Item95State extends State<Item95> {
     if (widget.menu != null) {
       widget.menu!.show(
         context,
-        context.rect.shift(Offset(0, 24)),
+        context.rect.shift(const Offset(0, 24)),
       );
     } else if (_enabled()) {
       return widget.onTap!(context);

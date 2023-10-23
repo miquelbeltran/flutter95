@@ -23,8 +23,8 @@ Future<T?> showMenu95<T>(
     context: context,
     position: position,
     shape: Border(
-      top: BorderSide(color: Flutter95.white, width: 1),
-      left: BorderSide(color: Flutter95.white, width: 1),
+      top: const BorderSide(color: Flutter95.white, width: 1),
+      left: const BorderSide(color: Flutter95.white, width: 1),
       bottom: BorderSide(color: Flutter95.grays[3], width: 1),
       right: BorderSide(color: Flutter95.grays[3], width: 1),
     ),

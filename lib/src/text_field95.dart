@@ -6,7 +6,7 @@ import 'utils.dart';
 
 class TextField95 extends StatefulWidget {
   const TextField95({
-    Key? key,
+    super.key,
     this.controller,
     this.backgroundColor = Flutter95.white,
     this.height = 32,
@@ -18,7 +18,7 @@ class TextField95 extends StatefulWidget {
     this.onSubmitted,
     this.inputFormatters,
     this.autofocus = false,
-  }) : super(key: key);
+  });
 
   final TextEditingController? controller;
   final double height;
@@ -33,7 +33,7 @@ class TextField95 extends StatefulWidget {
   final bool autofocus;
 
   @override
-  _TextField95State createState() => _TextField95State();
+  State<TextField95> createState() => _TextField95State();
 }
 
 class _TextField95State extends State<TextField95> {
@@ -42,7 +42,7 @@ class _TextField95State extends State<TextField95> {
     return Elevation95(
       type: Elevation95Type.down,
       child: Container(
-        padding: EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(4.0),
         color: Flutter95.white,
         height: widget.height,
         child: Material(
@@ -52,7 +52,7 @@ class _TextField95State extends State<TextField95> {
             maxLines: widget.maxLines,
             keyboardType:
                 widget.multiline ? TextInputType.multiline : TextInputType.text,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               isDense: true,
               border: InputBorder.none,
             ),

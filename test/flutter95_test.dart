@@ -6,7 +6,7 @@ void main() {
   group('Scaffold95', () {
     testWidgets('can build widget', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold95(
             title: 'test',
             body: Text('other'),
@@ -23,7 +23,7 @@ void main() {
         MaterialApp(
           home: Scaffold95(
             title: 'test',
-            body: Text('other'),
+            body: const Text('other'),
             onClosePressed: (context) {
               // Pass.
             },
@@ -41,7 +41,7 @@ void main() {
         MaterialApp(
           home: Button95(
             onTap: () {},
-            child: Text('button'),
+            child: const Text('button'),
           ),
         ),
       );
@@ -53,20 +53,20 @@ void main() {
   group('TextField95', () {
     testWidgets('Can build widget', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: TextField95(
             key: Key('TextField95Key'),
           ),
         ),
       );
-      expect(find.byKey(Key('TextField95Key')), findsOneWidget);
+      expect(find.byKey(const Key('TextField95Key')), findsOneWidget);
     });
   });
 
   group('Toolbar95', () {
     testWidgets('Can build widget', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Toolbar95(
             key: Key('Toolbar95Key'),
             actions: [
@@ -77,7 +77,7 @@ void main() {
           ),
         ),
       );
-      expect(find.byKey(Key('Toolbar95Key')), findsOneWidget);
+      expect(find.byKey(const Key('Toolbar95Key')), findsOneWidget);
       expect(find.byType(Item95), findsNWidgets(3));
     });
   });
@@ -91,7 +91,7 @@ void main() {
           home: Tooltip95(
             message: message,
             triggerMode: TooltipTriggerMode.longPress,
-            child: Text(
+            child: const Text(
               'long press to show tooltip',
               style: Flutter95.textStyle,
             ),
@@ -110,25 +110,25 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Checkbox95(
-            key: Key('checkbox95Key'),
+            key: const Key('checkbox95Key'),
             value: true,
             onChanged: (value) {},
           ),
         ),
       );
-      expect(find.byKey(Key('checkbox95Key')), findsOneWidget);
+      expect(find.byKey(const Key('checkbox95Key')), findsOneWidget);
     });
 
     testWidgets('Can build disabled widget', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Checkbox95(
-            key: Key('checkbox95Key'),
+            key: const Key('checkbox95Key'),
             value: true,
           ),
         ),
       );
-      expect(find.byKey(Key('checkbox95Key')), findsOneWidget);
+      expect(find.byKey(const Key('checkbox95Key')), findsOneWidget);
     });
   });
 }

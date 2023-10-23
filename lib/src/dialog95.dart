@@ -25,7 +25,7 @@ Future<T?> showDialog95<T>({
           child: Scaffold95(
             title: title,
             body: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
               child: Column(
                 children: <Widget>[
                   _iconMessageRow(message),
@@ -34,7 +34,7 @@ Future<T?> showDialog95<T>({
                     onTap: () {
                       Navigator.of(context).pop(true);
                     },
-                    child: Text('OK'),
+                    child: const Text('OK'),
                   ),
                 ],
               ),
@@ -87,6 +87,7 @@ class Action95<T> {
   final T value;
   final String label;
 
+  // ignore: constant_identifier_names
   static const OK = Action95<bool>(value: true, label: 'OK');
   static const cancel = Action95<bool>(value: false, label: 'Cancel');
 }
