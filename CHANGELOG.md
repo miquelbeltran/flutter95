@@ -1,8 +1,17 @@
-## [1.1.1] - 2023/10/17
+## 1.2.0
+
+- Enable 'package:flutter_lints' and fix resulting diagnostics (#20) (2023-10-23)
+- remove tests example (#23) (2023-10-23)
+- feat: Added Tooltip95, a Windows95 Themed tooltip (#19) (2023-10-23)
+- add platforms to example (#22) (2023-10-23)
+- Use most recent GitHub actions (#21) (2023-10-23)
+- Added Windows95 styled Checkbox (#18) (2023-10-23)
+
+## 1.1.1
 
 - Changelog reformat
 
-## [1.1.0] - 2023/10/17
+## 1.1.0
 
 - various items by @lukepighetti in #9
 - add TextField95 autofocus by @lukepighetti in #10
