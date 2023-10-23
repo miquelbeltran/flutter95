@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter95/flutter95.dart';
 
@@ -13,13 +14,15 @@ class Flutter95App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       color: Flutter95.background,
-      home: const MainScreen(),
+      home: MainScreen(),
     );
   }
 }
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+  MainScreen({super.key});
+
+  final ValueNotifier<bool> checkboxValue = ValueNotifier<bool>(false);
 
   @override
   Widget build(BuildContext context) {
@@ -62,9 +65,43 @@ class MainScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 4),
+              ValueListenableBuilder(
+                valueListenable: checkboxValue,
+                builder: (context, value, child) {
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Checkbox95(
+                        value: value,
+                        label: "Enabled",
+                        onChanged: (value) {
+                          if (kDebugMode) {
+                            print(value);
+                          }
+                          checkboxValue.value = (value);
+                        },
+                      ),
+                      const SizedBox(width: 20),
+                      Checkbox95(
+                        value: value,
+                        label: "Disabled",
+                      ),
+                    ],
+                  );
+                },
+              ),
+              const SizedBox(height: 4),
               const Text(
                 'Text with Flutter95.textStyle',
                 style: Flutter95.textStyle,
+              ),
+              const SizedBox(height: 4),
+              const Tooltip95(
+                message: 'Hello from Flutter95!',
+                child: Text(
+                  'Long press this on to see a tooltip',
+                  style: Flutter95.textStyle,
+                ),
               ),
               const SizedBox(height: 4),
               Button95(

@@ -81,4 +81,54 @@ void main() {
       expect(find.byType(Item95), findsNWidgets(3));
     });
   });
+
+  group('Tooltip95', () {
+    testWidgets('Can show tooltip', (tester) async {
+      String message = 'Hello world';
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Tooltip95(
+            message: message,
+            triggerMode: TooltipTriggerMode.longPress,
+            child: const Text(
+              'long press to show tooltip',
+              style: Flutter95.textStyle,
+            ),
+          ),
+        ),
+      );
+
+      await tester.longPress(find.byType(Text));
+      await tester.pump();
+      expect(find.byTooltip(message), findsOneWidget);
+    });
+  });
+
+  group('Checkbox95', () {
+    testWidgets('Can build enabled widget', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Checkbox95(
+            key: const Key('checkbox95Key'),
+            value: true,
+            onChanged: (value) {},
+          ),
+        ),
+      );
+      expect(find.byKey(const Key('checkbox95Key')), findsOneWidget);
+    });
+
+    testWidgets('Can build disabled widget', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Checkbox95(
+            key: const Key('checkbox95Key'),
+            value: true,
+          ),
+        ),
+      );
+      expect(find.byKey(const Key('checkbox95Key')), findsOneWidget);
+    });
+  });
 }
