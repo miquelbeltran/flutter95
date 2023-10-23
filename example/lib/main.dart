@@ -88,6 +88,14 @@ class MainScreen extends StatelessWidget {
                 style: Flutter95.textStyle,
               ),
               const SizedBox(height: 4),
+              Tooltip95(
+                message: 'Hello from Flutter95!',
+                child: Text(
+                  'Long press this on to see a tooltip',
+                  style: Flutter95.textStyle,
+                ),
+              ),
+              const SizedBox(height: 4),
               Button95(
                 onTap: () {
                   showDialog95(

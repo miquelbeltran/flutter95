@@ -13,6 +13,7 @@ class Flutter95 {
   static const headerLight = Color(0xFF1034a6);
   static const white = Color(0xFFFFFFFF);
   static const black = Color.fromRGBO(5, 6, 8, 1);
+  static const tooltipBackground = Color(0xFFFFFFE3);
 
   static Color get background => grays[1];
 

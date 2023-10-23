@@ -123,6 +123,18 @@ TextField styled as a Windows95 text field.
 TextField95()
 ```
 
+#### Tooltip95
+
+A tooltip widget designed in Windows95 style.
+* Works just like Material's `Tooltip`.
+
+```dart
+Tooltip95(
+    message: 'Hello from Flutter95!',
+    child: Text('I have a tooltip for you!'),
+)
+```
+
 #### Elevation95
 
 Creates an effect of deepness and elevation around Widgets.
