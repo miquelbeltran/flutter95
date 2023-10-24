@@ -24,6 +24,12 @@ class MainScreen extends StatelessWidget {
 
   final ValueNotifier<bool> checkboxValue = ValueNotifier<bool>(false);
 
+  final _divider = const Divider95(
+    height: 20,
+    endIndent: 8,
+    indent: 8,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold95(
@@ -95,15 +101,15 @@ class MainScreen extends StatelessWidget {
                 'Text with Flutter95.textStyle',
                 style: Flutter95.textStyle,
               ),
-              const SizedBox(height: 4),
+              _divider,
               const Tooltip95(
                 message: 'Hello from Flutter95!',
                 child: Text(
-                  'Long press this on to see a tooltip',
+                  'Long press on this to see a tooltip',
                   style: Flutter95.textStyle,
                 ),
               ),
-              const SizedBox(height: 4),
+              _divider,
               Button95(
                 onTap: () {
                   showDialog95(

@@ -137,6 +137,18 @@ Tooltip95(
 
 <img src="https://github.com/miquelbeltran/flutter95/raw/master/art/tooltip95.png" alt="Tooltip95" width="200"/>
 
+#### Divider95
+
+A divider widget designed in Windows95 style.
+* Works just like Material's `Divider`.
+* Supports indent, endIndent and height.
+
+```dart
+Divider95()
+```
+
+<img src="https://github.com/miquelbeltran/flutter95/raw/master/art/divider95.png" alt="Divider95" width="200"/>
+
 #### Elevation95
 
 Creates an effect of deepness and elevation around Widgets.
