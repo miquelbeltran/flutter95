@@ -174,21 +174,23 @@ class MainScreen extends StatelessWidget {
       child: Elevation95(
         type: Elevation95Type.down,
         child: SizedBox(
-          height: 150,
-          child: ListView.builder(
-            padding: EdgeInsets.zero,
-            itemCount: 100,
-            itemBuilder: (context, index) {
-              return Elevation95(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Item $index',
-                    style: Flutter95.textStyle,
+          height: 300,
+          child: Scrollbar95(
+            child: ListView.builder(
+              padding: EdgeInsets.zero,
+              itemCount: 100,
+              itemBuilder: (context, index) {
+                return Elevation95(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Item $index',
+                      style: Flutter95.textStyle,
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),
