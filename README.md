@@ -2,8 +2,6 @@
 
 Windows95 UI components for Flutter apps.
 
-**UNDER CONSTRUCTION**
-
 ## Screenshots
 
 <img src="https://github.com/miquelbeltran/flutter95/raw/master/art/screenshot.png" alt="Screenshot" width="200"/>
@@ -113,6 +111,8 @@ Checkbox95(
 )
 ```
 
+<img src="https://github.com/miquelbeltran/flutter95/raw/master/art/checkbox95.png" alt="Checkbox95" width="200"/>
+
 #### TextField95
 
 TextField styled as a Windows95 text field.
@@ -135,6 +135,8 @@ Tooltip95(
 )
 ```
 
+<img src="https://github.com/miquelbeltran/flutter95/raw/master/art/tooltip95.png" alt="Tooltip95" width="200"/>
+
 #### Elevation95
 
 Creates an effect of deepness and elevation around Widgets.
@@ -156,6 +158,37 @@ Text(
 );
 ```
 
+#### Dialogs
+
+```dart
+showDialog95(
+  context: context,
+  title: 'Error',
+  message: 'Task failed successfully',
+);
+```
+
+<img src="https://github.com/miquelbeltran/flutter95/raw/master/art/dialog.png" alt="Dialog" width="200"/>
+
+### Contributing
+
+You can contribute in different ways:
+
+- Creating new Windows95 styled components.
+  - Please include screenshots in your PRs!
+  - Please update the example and tests to include the new component!
+- Improving existing components with better options.
+- Improving documentation both in code and this README file.
+- Creating more tests.
+- Improving CI scripts.
+- Fixing lint issues.
+- Creating feature requests.
+  - Please include a screenshot.
+  - Also don't expect a quick response, this is a hobby project.
+- Reporting bugs. 
+
 ### Acknowledgments
 
 Heavily inspired by [React95](https://github.com/arturbien/React95).
+
+Featured in [My Windows 95 ChatGPT app](https://www.youtube.com/watch?v=sXBWzFmLMxY) by @filiph.
