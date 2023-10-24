@@ -131,4 +131,17 @@ void main() {
       expect(find.byKey(const Key('checkbox95Key')), findsOneWidget);
     });
   });
+
+  group('Divider95', () {
+    testWidgets('Can build widget', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Divider95(
+            key: Key('Divider95Key'),
+          ),
+        ),
+      );
+      expect(find.byKey(const Key('Divider95Key')), findsOneWidget);
+    });
+  });
 }
