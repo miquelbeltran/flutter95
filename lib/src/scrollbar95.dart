@@ -31,88 +31,158 @@ class _Scrollbar95State extends State<Scrollbar95> {
   ScrollController? _controller;
   Timer? _continuousScrollingTimer;
   double _thumbExtent = 30;
+  Axis _scrollDirection = Axis.vertical;
 
   @override
   Widget build(BuildContext context) {
     _findControllerAndListen(context);
-    return Row(
-      children: [
-        Expanded(child: widget.child),
-        SizedBox(
-          height: double.infinity,
-          width: widget.scrollbarThickness,
-          child: Column(
+
+    IconData scrollBackIcon;
+    IconData scrollAheadIcon;
+
+    switch (_scrollDirection) {
+      case Axis.horizontal:
+        scrollBackIcon = Icons.arrow_left;
+        scrollAheadIcon = Icons.arrow_right;
+        break;
+      case Axis.vertical:
+        scrollBackIcon = Icons.arrow_drop_up;
+        scrollAheadIcon = Icons.arrow_drop_down;
+        break;
+    }
+
+    Widget scrollBackButton = GestureDetector(
+      onTap: _scrollBackOnce,
+      onLongPress: () => _startContinuousScrolling(false),
+      onLongPressEnd: (_) => _stopContinuousScrolling(),
+      child: AspectRatio(
+        aspectRatio: 1,
+        child: Elevation95(
+          child: Transform.scale(
+            scale: 1.5,
+            child: Icon(scrollBackIcon),
+          ),
+        ),
+      ),
+    );
+
+    Widget scrollAheadButton = GestureDetector(
+      onTap: _scrollAheadOnce,
+      onLongPress: () => _startContinuousScrolling(true),
+      onLongPressEnd: (_) => _stopContinuousScrolling(),
+      child: AspectRatio(
+        aspectRatio: 1,
+        child: Elevation95(
+          child: Transform.scale(
+            scale: 1.5,
+            child: Icon(scrollAheadIcon),
+          ),
+        ),
+      ),
+    );
+
+    Widget seekbar = Expanded(
+      child: CustomPaint(
+        painter: _CheckeredBackgroundPainter(
+          color1: Colors.white,
+          color2: const Color(0xFFC0C0C0),
+          squareSize: 2,
+        ),
+        isComplex: false,
+        willChange: false,
+        child: RepaintBoundary(
+          key: _trackKey,
+          child: Stack(
+            alignment: Alignment.topCenter,
             children: [
-              GestureDetector(
-                onTap: _scrollUpOnce,
-                onLongPress: () => _startContinuousScrolling(false),
-                onLongPressEnd: (_) => _stopContinuousScrolling(),
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: Elevation95(
-                    child: Transform.scale(
-                      scale: 1.5,
-                      child: const Icon(Icons.arrow_drop_up),
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: CustomPaint(
-                  painter: _CheckeredBackgroundPainter(
-                    color1: Colors.white,
-                    color2: const Color(0xFFC0C0C0),
-                    squareSize: 2,
-                  ),
-                  isComplex: false,
-                  willChange: false,
-                  child: RepaintBoundary(
-                    key: _trackKey,
-                    child: Stack(
-                      alignment: Alignment.topCenter,
-                      children: [
-                        ValueListenableBuilder(
-                          valueListenable: _relativeTrackPosition,
-                          builder: (context, value, child) {
-                            return Align(
-                              alignment: Alignment(0, value),
-                              child: child,
-                            );
-                          },
-                          child: GestureDetector(
-                            onVerticalDragUpdate: _dragUpdate,
-                            child: Elevation95(
-                              child: SizedBox(
-                                height: _thumbExtent,
-                                width: widget.scrollbarThickness,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              AspectRatio(
-                aspectRatio: 1,
-                child: GestureDetector(
-                  onTap: _scrollDownOnce,
-                  onLongPress: () => _startContinuousScrolling(true),
-                  onLongPressEnd: (_) => _stopContinuousScrolling(),
-                  child: Elevation95(
-                    child: Transform.scale(
-                      scale: 1.5,
-                      child: const Icon(Icons.arrow_drop_down),
-                    ),
-                  ),
-                ),
+              ValueListenableBuilder(
+                valueListenable: _relativeTrackPosition,
+                builder: (context, value, child) {
+                  Alignment alignment;
+                  switch (_scrollDirection) {
+                    case Axis.horizontal:
+                      alignment = Alignment(value, 0);
+                      break;
+                    case Axis.vertical:
+                      alignment = Alignment(0, value);
+                      break;
+                  }
+
+                  return Align(
+                    alignment: alignment,
+                    child: child,
+                  );
+                },
+                child: Builder(builder: (context) {
+                  Widget thumb;
+                  switch (_scrollDirection) {
+                    case Axis.horizontal:
+                      thumb = SizedBox(
+                        height: widget.scrollbarThickness,
+                        width: _thumbExtent,
+                      );
+                      break;
+                    case Axis.vertical:
+                      thumb = SizedBox(
+                        height: _thumbExtent,
+                        width: widget.scrollbarThickness,
+                      );
+                      break;
+                  }
+
+                  return GestureDetector(
+                    onVerticalDragUpdate: _scrollDirection == Axis.vertical
+                        ? _dragUpdateVertical
+                        : null,
+                    onHorizontalDragUpdate: _scrollDirection == Axis.horizontal
+                        ? _dragUpdateHorizontal
+                        : null,
+                    child: Elevation95(child: thumb),
+                  );
+                }),
               ),
             ],
           ),
         ),
-      ],
+      ),
     );
+
+    switch (_scrollDirection) {
+      case Axis.horizontal:
+        return Column(
+          children: [
+            Expanded(child: widget.child),
+            SizedBox(
+              width: double.infinity,
+              height: widget.scrollbarThickness,
+              child: Row(
+                children: [
+                  scrollBackButton,
+                  seekbar,
+                  scrollAheadButton,
+                ],
+              ),
+            ),
+          ],
+        );
+      case Axis.vertical:
+        return Row(
+          children: [
+            Expanded(child: widget.child),
+            SizedBox(
+              height: double.infinity,
+              width: widget.scrollbarThickness,
+              child: Column(
+                children: [
+                  scrollBackButton,
+                  seekbar,
+                  scrollAheadButton,
+                ],
+              ),
+            ),
+          ],
+        );
+    }
   }
 
   void _positionListener() {
@@ -124,7 +194,7 @@ class _Scrollbar95State extends State<Scrollbar95> {
     );
   }
 
-  void _scrollDownOnce() {
+  void _scrollAheadOnce() {
     double total = _controller!.position.maxScrollExtent;
     double nextPosition =
         min(_controller!.offset + (total * widget.scrollAmount), total);
@@ -136,7 +206,7 @@ class _Scrollbar95State extends State<Scrollbar95> {
     );
   }
 
-  void _scrollUpOnce() {
+  void _scrollBackOnce() {
     double total = _controller!.position.maxScrollExtent;
     double nextPosition =
         max(0, _controller!.offset - (total * widget.scrollAmount));
@@ -148,17 +218,17 @@ class _Scrollbar95State extends State<Scrollbar95> {
     );
   }
 
-  void _startContinuousScrolling(bool scrollDown) {
+  void _startContinuousScrolling(bool scrollAhead) {
     _stopContinuousScrolling();
-    if (scrollDown) {
+    if (scrollAhead) {
       _continuousScrollingTimer = Timer.periodic(
         _scrollingInterval,
-        (timer) => _scrollDownOnce(),
+        (timer) => _scrollAheadOnce(),
       );
     } else {
       _continuousScrollingTimer = Timer.periodic(
         _scrollingInterval,
-        (timer) => _scrollUpOnce(),
+        (timer) => _scrollBackOnce(),
       );
     }
   }
@@ -168,7 +238,7 @@ class _Scrollbar95State extends State<Scrollbar95> {
     _continuousScrollingTimer = null;
   }
 
-  _dragUpdate(DragUpdateDetails details) {
+  _dragUpdateVertical(DragUpdateDetails details) {
     RenderBox trackRenderBox =
         _trackKey.currentContext!.findRenderObject() as RenderBox;
     double trackHeight = trackRenderBox.size.height;
@@ -186,6 +256,24 @@ class _Scrollbar95State extends State<Scrollbar95> {
     _controller!.jumpTo(nextPosition);
   }
 
+  _dragUpdateHorizontal(DragUpdateDetails details) {
+    RenderBox trackRenderBox =
+        _trackKey.currentContext!.findRenderObject() as RenderBox;
+    double trackWidth = trackRenderBox.size.width;
+    double trackLeft = trackRenderBox.localToGlobal(Offset.zero).dx;
+    double thumbPosition = details.globalPosition.dx - trackLeft;
+
+    double thumbPositionNormalised = thumbPosition / trackWidth;
+
+    double nextPosition =
+        thumbPositionNormalised * (_controller!.position.maxScrollExtent);
+
+    nextPosition =
+        clampDouble(nextPosition, 0, _controller!.position.extentTotal);
+
+    _controller!.jumpTo(nextPosition);
+  }
+
   void _findControllerAndListen(BuildContext context) {
     if (_controller != null) return;
 
@@ -193,17 +281,24 @@ class _Scrollbar95State extends State<Scrollbar95> {
     if (widget.child is ScrollView &&
         (widget.child as ScrollView).controller != null) {
       _controller = (widget.child as ScrollView).controller;
+      print(
+          "found in scrollview: ${_controller!.hashCode}  - ${DateTime.now()}");
     } else if (widget.child is SingleChildScrollView &&
         (widget.child as SingleChildScrollView).controller != null) {
       _controller = (widget.child as SingleChildScrollView).controller;
+      print(
+          "found in singlechildscrollview: ${_controller!.hashCode}  - ${DateTime.now()}");
     } else {
       _controller = PrimaryScrollController.of(context);
+      print(
+          'found in primary scroll controller: ${_controller!.hashCode}  - ${DateTime.now()}');
     }
 
     _controller?.addListener(_positionListener);
 
     // Call the listener once to set the initial position.
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _scrollDirection = _controller!.position.axis;
       _positionListener();
       _getThumbExtent();
     });
