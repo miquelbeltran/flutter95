@@ -182,6 +182,32 @@ showDialog95(
 
 <img src="https://github.com/miquelbeltran/flutter95/raw/master/art/dialog.png" alt="Dialog" width="200"/>
 
+#### Scrollbar95
+
+A Scrollbar wrapper with Windows95 widgets for Scrollable widgets.
+
+* Just wrap a scrollable widget (`SingleChildScrollView` and `ScrollView` descendants)
+* Supports vertical and horizontal scrollbars.
+* `minThumbHeight` defines the minimum height of the scrollbar thumb
+* `scrollbarThickness` defines the thickness of the scrollbar
+* `scrollAmount` defines the % of the scrollbar that is scrolled when clicking on the scrollbar track
+* NOTE: If screen contains more than one scrollable element, then you must give ScrollController to the Scrollbar95 child widget
+
+```dart
+Scrollbar95(
+  child: SingleChildScrollView(
+    controller: ScrollController(),
+    child: Column(
+      children: [
+        ...
+      ],
+    ),
+  ),
+)
+```
+
+<img src="https://github.com/miquelbeltran/flutter95/raw/master/art/scrollbar95.png" alt="ScrollBar95" width="200"/>
+
 ### Contributing
 
 You can contribute in different ways:
