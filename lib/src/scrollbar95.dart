@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter95/flutter95.dart';
@@ -7,6 +8,7 @@ import 'package:flutter95/flutter95.dart';
 class Scrollbar95 extends StatefulWidget {
   final Widget child;
   final double scrollAmount;
+  final double minThumbHeight;
   final double scrollbarThickness;
 
   const Scrollbar95({
@@ -14,6 +16,7 @@ class Scrollbar95 extends StatefulWidget {
     required this.child,
     this.scrollAmount = 0.05,
     this.scrollbarThickness = 30,
+    this.minThumbHeight = 10,
   }) : assert(scrollAmount > 0 && scrollAmount <= 1);
 
   @override
@@ -27,6 +30,7 @@ class _Scrollbar95State extends State<Scrollbar95> {
   final GlobalKey _trackKey = GlobalKey();
   ScrollController? _controller;
   Timer? _continuousScrollingTimer;
+  double _thumbExtent = 30;
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +79,13 @@ class _Scrollbar95State extends State<Scrollbar95> {
                               child: child,
                             );
                           },
-                          child: AspectRatio(
-                            aspectRatio: 1,
-                            child: GestureDetector(
-                              onVerticalDragUpdate: _dragUpdate,
-                              child: const Elevation95(child: SizedBox()),
+                          child: GestureDetector(
+                            onVerticalDragUpdate: _dragUpdate,
+                            child: Elevation95(
+                              child: SizedBox(
+                                height: _thumbExtent,
+                                width: widget.scrollbarThickness,
+                              ),
                             ),
                           ),
                         ),
@@ -111,8 +117,11 @@ class _Scrollbar95State extends State<Scrollbar95> {
 
   void _positionListener() {
     // Bring the scroll position into the range of -1 to 1
-    _relativeTrackPosition.value =
-        ((_controller!.offset / _controller!.position.maxScrollExtent) * 2) - 1;
+    _relativeTrackPosition.value = clampDouble(
+      ((_controller!.offset / _controller!.position.maxScrollExtent) * 2) - 1,
+      -1,
+      1,
+    );
   }
 
   void _scrollDownOnce() {
@@ -171,9 +180,8 @@ class _Scrollbar95State extends State<Scrollbar95> {
     double nextPosition =
         thumbPositionNormalised * (_controller!.position.maxScrollExtent);
 
-    if (thumbPositionNormalised > 1.01 || thumbPositionNormalised < -0.01) {
-      return;
-    }
+    nextPosition =
+        clampDouble(nextPosition, 0, _controller!.position.extentTotal);
 
     _controller!.jumpTo(nextPosition);
   }
@@ -197,7 +205,47 @@ class _Scrollbar95State extends State<Scrollbar95> {
     // Call the listener once to set the initial position.
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _positionListener();
+      _getThumbExtent();
     });
+  }
+
+  void _getThumbExtent() {
+    ScrollMetrics scrollMetrics = _controller!.position;
+
+    final double totalContentExtent = scrollMetrics.extentTotal;
+
+    // Thumb extent reflects fraction of content visible, as long as this
+    final double fractionVisible = clampDouble(
+      (scrollMetrics.extentInside) / totalContentExtent,
+      0.0,
+      1.0,
+    );
+
+    final double traversableTrackExtent =
+        scrollMetrics.viewportDimension - (2 * widget.scrollbarThickness);
+
+    final double thumbExtent = max(
+      min(
+        traversableTrackExtent * fractionVisible,
+        traversableTrackExtent,
+      ),
+      traversableTrackExtent * fractionVisible,
+    );
+
+    final double fractionOverscrolled =
+        1.0 - scrollMetrics.extentInside / scrollMetrics.viewportDimension;
+
+    final double minLength = widget.minThumbHeight;
+
+    final double safeMinLength = min(minLength, traversableTrackExtent);
+    final double newMinLength =
+        (scrollMetrics.extentBefore > 0 && scrollMetrics.extentAfter > 0)
+            ? safeMinLength
+            : safeMinLength *
+                (1.0 - clampDouble(fractionOverscrolled, 0.0, 0.2) / 0.2);
+
+    _thumbExtent =
+        clampDouble(thumbExtent, newMinLength, traversableTrackExtent);
   }
 }
 
