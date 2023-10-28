@@ -247,6 +247,13 @@ class _Scrollbar95State extends State<Scrollbar95> {
     _thumbExtent =
         clampDouble(thumbExtent, newMinLength, traversableTrackExtent);
   }
+
+  @override
+  void didUpdateWidget(covariant Scrollbar95 oldWidget) {
+    // Make controller null so on next rebuild, it is re-fetched.
+    _controller = null;
+    super.didUpdateWidget(oldWidget);
+  }
 }
 
 class _CheckeredBackgroundPainter extends CustomPainter {
