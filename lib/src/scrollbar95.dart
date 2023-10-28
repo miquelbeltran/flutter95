@@ -281,17 +281,11 @@ class _Scrollbar95State extends State<Scrollbar95> {
     if (widget.child is ScrollView &&
         (widget.child as ScrollView).controller != null) {
       _controller = (widget.child as ScrollView).controller;
-      print(
-          "found in scrollview: ${_controller!.hashCode}  - ${DateTime.now()}");
     } else if (widget.child is SingleChildScrollView &&
         (widget.child as SingleChildScrollView).controller != null) {
       _controller = (widget.child as SingleChildScrollView).controller;
-      print(
-          "found in singlechildscrollview: ${_controller!.hashCode}  - ${DateTime.now()}");
     } else {
       _controller = PrimaryScrollController.of(context);
-      print(
-          'found in primary scroll controller: ${_controller!.hashCode}  - ${DateTime.now()}');
     }
 
     _controller?.addListener(_positionListener);

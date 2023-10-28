@@ -82,9 +82,6 @@ class MainScreen extends StatelessWidget {
                         value: value,
                         label: "Enabled",
                         onChanged: (value) {
-                          if (kDebugMode) {
-                            print(value);
-                          }
                           checkboxValue.value = (value);
                         },
                       ),
