@@ -52,6 +52,7 @@ class MainScreen extends StatelessWidget {
         child: Elevation95(
           type: Elevation95Type.down,
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               const SizedBox(height: 4),
               Row(
@@ -81,9 +82,6 @@ class MainScreen extends StatelessWidget {
                         value: value,
                         label: "Enabled",
                         onChanged: (value) {
-                          if (kDebugMode) {
-                            print(value);
-                          }
                           checkboxValue.value = (value);
                         },
                       ),
@@ -135,6 +133,7 @@ class MainScreen extends StatelessWidget {
                 ),
               ),
               _buildListView(),
+              _buildHorizontalListView(),
             ],
           ),
         ),
@@ -175,20 +174,63 @@ class MainScreen extends StatelessWidget {
         type: Elevation95Type.down,
         child: SizedBox(
           height: 150,
-          child: ListView.builder(
-            padding: EdgeInsets.zero,
-            itemCount: 100,
-            itemBuilder: (context, index) {
-              return Elevation95(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Item $index',
-                    style: Flutter95.textStyle,
+          child: Scrollbar95(
+            child: ListView.builder(
+              controller: ScrollController(),
+              padding: EdgeInsets.zero,
+              itemCount: 100,
+              itemBuilder: (context, index) {
+                return Elevation95(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Item $index',
+                      style: Flutter95.textStyle,
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding _buildHorizontalListView() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8.0,
+        vertical: 8.0,
+      ),
+      child: Elevation95(
+        type: Elevation95Type.down,
+        child: SizedBox(
+          height: 100,
+          child: Scrollbar95(
+            child: ListView.builder(
+              controller: ScrollController(),
+              padding: EdgeInsets.zero,
+              scrollDirection: Axis.horizontal,
+              itemCount: 100,
+              itemBuilder: (context, index) {
+                return AspectRatio(
+                  aspectRatio: 1,
+                  child: Elevation95(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                        child: Text(
+                          'Item $index',
+                          style: Flutter95.textStyle,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ),
