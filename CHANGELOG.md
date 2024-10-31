@@ -1,3 +1,8 @@
+# 1.3.0
+
+- feat: Added Divider95 Widget (#25) (2023-10-24)
+- updated docs (2023-10-24)
+
 ## 1.2.0
 
 - Enable 'package:flutter_lints' and fix resulting diagnostics (#20) (2023-10-23)
