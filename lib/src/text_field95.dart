@@ -18,6 +18,7 @@ class TextField95 extends StatefulWidget {
     this.onSubmitted,
     this.inputFormatters,
     this.autofocus = false,
+    this.keyboardType,
   });
 
   final TextEditingController? controller;
@@ -30,6 +31,7 @@ class TextField95 extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
   final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? keyboardType;
   final bool autofocus;
 
   @override
@@ -50,8 +52,10 @@ class _TextField95State extends State<TextField95> {
           child: TextField(
             controller: widget.controller,
             maxLines: widget.maxLines,
-            keyboardType:
-                widget.multiline ? TextInputType.multiline : TextInputType.text,
+            keyboardType: widget.keyboardType ??
+                (widget.multiline
+                    ? TextInputType.multiline
+                    : TextInputType.text),
             decoration: const InputDecoration(
               isDense: true,
               border: InputBorder.none,
