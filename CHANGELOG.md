@@ -1,6 +1,7 @@
 # 1.3.1
 
 - fix: mimic material scaffold bounds (#30)
+- feat: Allow TextField95 to specify alternate keyboard types. (#29)
 
 # 1.3.0
 
