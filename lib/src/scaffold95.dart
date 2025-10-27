@@ -36,7 +36,7 @@ class Scaffold95 extends StatelessWidget {
           const SizedBox(height: 4),
           if (toolbar != null) toolbar!,
           if (toolbar != null) const SizedBox(height: 4),
-          body,
+          Expanded(child: body),
         ],
       ),
     );

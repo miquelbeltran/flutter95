@@ -22,21 +22,23 @@ Future<T?> showDialog95<T>({
           constraints: BoxConstraints(
             maxWidth: maxWidth,
           ),
-          child: Scaffold95(
-            title: title,
-            body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-              child: Column(
-                children: <Widget>[
-                  _iconMessageRow(message),
-                  const SizedBox(height: 8),
-                  Button95(
-                    onTap: () {
-                      Navigator.of(context).pop(true);
-                    },
-                    child: const Text('OK'),
-                  ),
-                ],
+          child: IntrinsicHeight(
+            child: Scaffold95(
+              title: title,
+              body: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                child: Column(
+                  children: <Widget>[
+                    _iconMessageRow(message),
+                    const SizedBox(height: 8),
+                    Button95(
+                      onTap: () {
+                        Navigator.of(context).pop(true);
+                      },
+                      child: const Text('OK'),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
