@@ -1,3 +1,7 @@
+# 1.3.1
+
+- fix: mimic material scaffold bounds (#30)
+
 # 1.3.0
 
 - feat: Added Divider95 Widget (#25) (2023-10-24)
