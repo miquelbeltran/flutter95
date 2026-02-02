@@ -41,7 +41,7 @@ class Menu95<T> {
 
   final List<MenuItem95<T>> items;
 
-  final Function(T?) onItemSelected;
+  final Function(T? item) onItemSelected;
 
   void show(
     BuildContext context,
