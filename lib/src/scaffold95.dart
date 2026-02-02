@@ -42,7 +42,11 @@ class Scaffold95 extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          WindowHeader95(title: title, onClosePressed: onClosePressed),
+          WindowHeader95(
+            title: title,
+            customWidget: customWidget,
+            showCloseButton: showCloseButton,
+            onClosePressed: onClosePressed),
           const SizedBox(height: 4),
           if (toolbar != null) toolbar!,
           if (toolbar != null) const SizedBox(height: 4),
