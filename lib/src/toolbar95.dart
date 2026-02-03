@@ -33,7 +33,7 @@ class Item95 extends StatefulWidget {
 
   final Menu95? menu;
 
-  final Function(BuildContext)? onTap;
+  final Function(BuildContext context)? onTap;
 
   @override
   State<Item95> createState() => _Item95State();

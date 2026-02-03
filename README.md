@@ -8,7 +8,7 @@ Windows95 UI components for Flutter apps.
 
 ## Components
 
-#### Scaffold95
+### Scaffold95
 
 Scaffold as a Windows95 styled window.
 
@@ -36,7 +36,18 @@ Scaffold95(
 )
 ```
 
-#### Menu95
+You can provide a custom `WindowHeader95` to override the default `Scaffold95` header.
+
+```dart
+Scaffold95(
+  customHeader: WindowHeader95(
+    child: Row(/* etc */),
+  ),
+  body: Container(),
+)
+```
+
+### Menu95
 
 Windows95 styled menu.
 
@@ -82,7 +93,7 @@ Item95(
 ),
 ```
 
-#### Button95
+### Button95
 
 Windows95 styled button.
 
@@ -97,12 +108,13 @@ Button95(
 )
 ```
 
-#### Checkbox95
+### Checkbox95
 
 Windows95 styled checkbox
 
 * Provides label in windows95 style.
 * If `onChanged` is null, acts as a disabled checkbox.
+
 ```dart
 Checkbox95(
     value: value,
@@ -123,9 +135,10 @@ TextField styled as a Windows95 text field.
 TextField95()
 ```
 
-#### Tooltip95
+### Tooltip95
 
 A tooltip widget designed in Windows95 style.
+
 * Works just like Material's `Tooltip`.
 
 ```dart
@@ -137,9 +150,10 @@ Tooltip95(
 
 <img src="https://github.com/miquelbeltran/flutter95/raw/master/art/tooltip95.png" alt="Tooltip95" width="200"/>
 
-#### Divider95
+### Divider95
 
 A divider widget designed in Windows95 style.
+
 * Works just like Material's `Divider`.
 * Supports indent, endIndent and height.
 
@@ -149,7 +163,7 @@ Divider95()
 
 <img src="https://github.com/miquelbeltran/flutter95/raw/master/art/divider95.png" alt="Divider95" width="200"/>
 
-#### Elevation95
+### Elevation95
 
 Creates an effect of deepness and elevation around Widgets.
 
@@ -159,7 +173,7 @@ Elevation95(
 )
 ```
 
-#### Flutter95.textStyle
+### Flutter95.textStyle
 
 TextStyle ready to use that copies the Windows95 text style.
 
@@ -170,7 +184,7 @@ Text(
 );
 ```
 
-#### Dialogs
+### Dialogs
 
 ```dart
 showDialog95(
@@ -182,24 +196,24 @@ showDialog95(
 
 <img src="https://github.com/miquelbeltran/flutter95/raw/master/art/dialog.png" alt="Dialog" width="200"/>
 
-### Contributing
+## Contributing
 
 You can contribute in different ways:
 
-- Creating new Windows95 styled components.
-  - Please include screenshots in your PRs!
-  - Please update the example and tests to include the new component!
-- Improving existing components with better options.
-- Improving documentation both in code and this README file.
-- Creating more tests.
-- Improving CI scripts.
-- Fixing lint issues.
-- Creating feature requests.
-  - Please include a screenshot.
-  - Also don't expect a quick response, this is a hobby project.
-- Reporting bugs. 
+* Creating new Windows95 styled components.
+  * Please include screenshots in your PRs!
+  * Please update the example and tests to include the new component!
+* Improving existing components with better options.
+* Improving documentation both in code and this README file.
+* Creating more tests.
+* Improving CI scripts.
+* Fixing lint issues.
+* Creating feature requests.
+  * Please include a screenshot.
+  * Also don't expect a quick response, this is a hobby project.
+* Reporting bugs.
 
-### Acknowledgments
+## Acknowledgments
 
 Heavily inspired by [React95](https://github.com/arturbien/React95).
 

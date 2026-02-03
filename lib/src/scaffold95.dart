@@ -8,14 +8,20 @@ import 'utils.dart';
 class Scaffold95 extends StatelessWidget {
   const Scaffold95({
     super.key,
-    required this.title,
+    this.title,
     required this.body,
     this.toolbar,
     this.onClosePressed,
+    this.customHeader,
   });
 
-  final String title;
+  /// Scaffold title
+  final String? title;
+
+  /// Scaffold body
   final Widget body;
+
+  /// Scaffold toolbar
   final Toolbar95? toolbar;
 
   /// Custom behavior of the [CloseButton95]. When [onClosePressed] isn't null,
@@ -24,7 +30,11 @@ class Scaffold95 extends StatelessWidget {
   ///
   /// Otherwise, the close button is only shown when the navigator
   /// can be popped, and will automatically call [Navigator.pop] when clicked.
-  final void Function(BuildContext)? onClosePressed;
+  final void Function(BuildContext context)? onClosePressed;
+
+  /// Custom Scaffold header, overrides provided title
+  /// and onClosePressed functionality
+  final WindowHeader95? customHeader;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +42,11 @@ class Scaffold95 extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          WindowHeader95(title: title, onClosePressed: onClosePressed),
+          customHeader ??
+              WindowHeader95(
+                title: title,
+                onClosePressed: onClosePressed,
+              ),
           const SizedBox(height: 4),
           if (toolbar != null) toolbar!,
           if (toolbar != null) const SizedBox(height: 4),
@@ -46,13 +60,26 @@ class Scaffold95 extends StatelessWidget {
 class WindowHeader95 extends StatefulWidget {
   const WindowHeader95({
     super.key,
-    required this.title,
+    this.title,
+    this.forceCloseButton,
     this.onClosePressed,
+    this.child,
   });
 
+  /// Header title in the default [Flutter95.headerTextStyle] style
   final String? title;
 
-  final void Function(BuildContext)? onClosePressed;
+  /// If set, will force showing or hidding the close button
+  /// If null, the close button will be displayed if canPop is true
+  final bool? forceCloseButton;
+
+  /// Custom action on close tap
+  /// If set, the close button will always be displayed
+  final void Function(BuildContext context)? onClosePressed;
+
+  /// Optional child, if set, it will be displayed instead of the [title]
+  /// and the close button
+  final Widget? child;
 
   @override
   State<WindowHeader95> createState() => _WindowHeader95State();
@@ -83,21 +110,23 @@ class _WindowHeader95State extends State<WindowHeader95> {
               ],
             ),
           ),
-          child: Row(
-            children: [
-              const SizedBox(width: 8),
-              Text(
-                widget.title!,
-                style: Flutter95.headerTextStyle,
+          child: widget.child ??
+              Row(
+                children: [
+                  const SizedBox(width: 8),
+                  if (widget.title != null)
+                    Text(
+                      widget.title!,
+                      style: Flutter95.headerTextStyle,
+                    ),
+                  const Spacer(),
+                  if (widget.forceCloseButton == true ||
+                      widget.onClosePressed != null ||
+                      (_canPop && widget.forceCloseButton != false))
+                    CloseButton95(onPressed: widget.onClosePressed),
+                  const SizedBox(width: 4),
+                ],
               ),
-              const Spacer(),
-              if (widget.onClosePressed != null)
-                CloseButton95(onPressed: widget.onClosePressed!)
-              else if (_canPop)
-                const CloseButton95(),
-              const SizedBox(width: 4),
-            ],
-          ),
         ),
       ),
     );
@@ -105,7 +134,7 @@ class _WindowHeader95State extends State<WindowHeader95> {
 }
 
 class CloseButton95 extends StatelessWidget {
-  final void Function(BuildContext)? onPressed;
+  final void Function(BuildContext context)? onPressed;
 
   const CloseButton95({super.key, this.onPressed});
 
