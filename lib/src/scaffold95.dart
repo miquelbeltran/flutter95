@@ -9,23 +9,19 @@ class Scaffold95 extends StatelessWidget {
   const Scaffold95({
     super.key,
     this.title,
-    this.customWidget,
-    this.showCloseButton,
     required this.body,
     this.toolbar,
     this.onClosePressed,
+    this.customHeader,
   });
 
+  /// Scaffold title
   final String? title;
 
-  /// Add your own widget to header. For any [Text] widgets, it is recommended
-  /// to use [Flutter95.headerTextStyle] style
-  ///
-  /// Overrides [title], [showCloseButton], and [onClosePressed]
-  final Widget? customWidget;
-
-  final bool? showCloseButton;
+  /// Scaffold body
   final Widget body;
+
+  /// Scaffold toolbar
   final Toolbar95? toolbar;
 
   /// Custom behavior of the [CloseButton95]. When [onClosePressed] isn't null,
@@ -36,17 +32,21 @@ class Scaffold95 extends StatelessWidget {
   /// can be popped, and will automatically call [Navigator.pop] when clicked.
   final void Function(BuildContext context)? onClosePressed;
 
+  /// Custom Scaffold header, overrides provided title
+  /// and onClosePressed functionality
+  final WindowHeader95? customHeader;
+
   @override
   Widget build(BuildContext context) {
     return Elevation95(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          WindowHeader95(
-            title: title,
-            customWidget: customWidget,
-            showCloseButton: showCloseButton,
-            onClosePressed: onClosePressed),
+          customHeader ??
+              WindowHeader95(
+                title: title,
+                onClosePressed: onClosePressed,
+              ),
           const SizedBox(height: 4),
           if (toolbar != null) toolbar!,
           if (toolbar != null) const SizedBox(height: 4),
@@ -61,18 +61,24 @@ class WindowHeader95 extends StatefulWidget {
   const WindowHeader95({
     super.key,
     this.title,
-    this.customWidget,
-    this.showCloseButton,
+    this.forceCloseButton,
     this.onClosePressed,
+    this.child,
   });
 
+  /// Header title in the default [Flutter95.headerTextStyle] style
   final String? title;
 
-  final Widget? customWidget;
+  /// If set, will force showing or hidding the close button
+  /// If null, the close button will be displayed if canPop is true
+  final bool? forceCloseButton;
 
-  final bool? showCloseButton;
-
+  /// Custom action on close tap
   final void Function(BuildContext context)? onClosePressed;
+
+  /// Optional child, if set, it will be displayed instead of the [title]
+  /// and the close button
+  final Widget? child;
 
   @override
   State<WindowHeader95> createState() => _WindowHeader95State();
@@ -103,7 +109,7 @@ class _WindowHeader95State extends State<WindowHeader95> {
               ],
             ),
           ),
-          child: widget.customWidget ??
+          child: widget.child ??
               Row(
                 children: [
                   const SizedBox(width: 8),
@@ -113,11 +119,9 @@ class _WindowHeader95State extends State<WindowHeader95> {
                       style: Flutter95.headerTextStyle,
                     ),
                   const Spacer(),
-                  if (widget.onClosePressed != null &&
-                      widget.showCloseButton != false)
-                    CloseButton95(onPressed: widget.onClosePressed!)
-                  else if (_canPop && widget.showCloseButton != false)
-                    const CloseButton95(),
+                  if (widget.forceCloseButton == true ||
+                      (_canPop && widget.forceCloseButton != false))
+                    CloseButton95(onPressed: widget.onClosePressed),
                   const SizedBox(width: 4),
                 ],
               ),
