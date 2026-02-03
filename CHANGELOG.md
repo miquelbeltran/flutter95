@@ -1,9 +1,17 @@
-# 1.3.1
+# Changelog
+
+## 1.4.0
+
+- Custom widgets on header for WindowHeader95/Scaffold95 (#32) (2026-02-03)
+- upgraded example android to be able to run on newer flutter versions (#31) (2026-02-02)
+- chore: update changelog (2025-10-27)
+
+## 1.3.1
 
 - fix: mimic material scaffold bounds (#30)
 - feat: Allow TextField95 to specify alternate keyboard types. (#29)
 
-# 1.3.0
+## 1.3.0
 
 - feat: Added Divider95 Widget (#25) (2023-10-24)
 - updated docs (2023-10-24)
