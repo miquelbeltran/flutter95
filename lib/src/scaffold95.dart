@@ -74,6 +74,7 @@ class WindowHeader95 extends StatefulWidget {
   final bool? forceCloseButton;
 
   /// Custom action on close tap
+  /// If set, the close button will always be displayed
   final void Function(BuildContext context)? onClosePressed;
 
   /// Optional child, if set, it will be displayed instead of the [title]
@@ -120,6 +121,7 @@ class _WindowHeader95State extends State<WindowHeader95> {
                     ),
                   const Spacer(),
                   if (widget.forceCloseButton == true ||
+                      widget.onClosePressed != null ||
                       (_canPop && widget.forceCloseButton != false))
                     CloseButton95(onPressed: widget.onClosePressed),
                   const SizedBox(width: 4),
