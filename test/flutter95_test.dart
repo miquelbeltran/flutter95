@@ -144,4 +144,65 @@ void main() {
       expect(find.byKey(const Key('Divider95Key')), findsOneWidget);
     });
   });
+
+  group('Menu95', () {
+    testWidgets('Can open menu', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Toolbar95(
+            actions: [
+              Item95(
+                label: 'File',
+                menu: Menu95(
+                  items: [
+                    MenuItem95(value: 1, label: 'New'),
+                    const MenuDivider95(),
+                    MenuItem95(value: 2, label: 'Exit'),
+                  ],
+                  onItemSelected: (item) {},
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('File'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('New'), findsOneWidget);
+      expect(find.text('Exit'), findsOneWidget);
+      expect(find.byType(Divider95), findsOneWidget);
+    });
+
+    testWidgets('Can select item', (tester) async {
+      int? selected;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Toolbar95(
+            actions: [
+              Item95(
+                label: 'File',
+                menu: Menu95(
+                  items: [
+                    MenuItem95(value: 1, label: 'New'),
+                    MenuItem95(value: 2, label: 'Exit'),
+                  ],
+                  onItemSelected: (item) => selected = item,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('File'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Exit'));
+      await tester.pumpAndSettle();
+
+      expect(selected, 2);
+      expect(find.text('New'), findsNothing);
+    });
+  });
 }
