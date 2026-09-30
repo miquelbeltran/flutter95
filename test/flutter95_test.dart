@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter95/flutter95.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -203,6 +204,47 @@ void main() {
 
       expect(selected, 2);
       expect(find.text('New'), findsNothing);
+    });
+
+    testWidgets('Highlights item on hover', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Toolbar95(
+            actions: [
+              Item95(
+                label: 'File',
+                menu: Menu95(
+                  items: [
+                    MenuItem95(value: 1, label: 'New'),
+                  ],
+                  onItemSelected: (item) {},
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('File'));
+      await tester.pumpAndSettle();
+
+      Color? background() => tester
+          .widget<Container>(find
+              .ancestor(of: find.text('New'), matching: find.byType(Container))
+              .first)
+          .color;
+
+      expect(background(), Flutter95.background);
+
+      final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+      await gesture.addPointer(location: Offset.zero);
+      addTearDown(gesture.removePointer);
+      await gesture.moveTo(tester.getCenter(find.text('New')));
+      await tester.pump();
+
+      expect(background(), Flutter95.headerDark);
+      expect(
+          tester.widget<Text>(find.text('New')).style?.color, Flutter95.white);
     });
   });
 }
