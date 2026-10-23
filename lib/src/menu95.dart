@@ -9,17 +9,17 @@ Future<T?> showMenu95<T>(
   List<MenuEntry95> items,
 ) async {
   final List<PopupMenuEntry<T>> entries = items.map((item) {
-    if (item is MenuItem95) {
-      return PopupMenuItem<T>(
-        value: item.value,
-        height: 24,
-        padding: EdgeInsets.zero,
-        child: _MenuItemLabel95(
-          label: item.label,
+    return switch (item) {
+      MenuItem95() => PopupMenuItem<T>(
+          value: item.value,
+          height: 24,
+          padding: EdgeInsets.zero,
+          child: _MenuItemLabel95(
+            label: item.label,
+          ),
         ),
-      );
-    }
-    return _MenuSeparator95<T>();
+      MenuDivider95() => _MenuSeparator95<T>(),
+    };
   }).toList();
 
   return showMenu(
@@ -59,7 +59,7 @@ class Menu95<T> {
   }
 }
 
-abstract class MenuEntry95<T> {
+sealed class MenuEntry95<T> {
   const MenuEntry95();
 }
 
