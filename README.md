@@ -54,6 +54,8 @@ Windows95 styled menu.
 <img src="https://github.com/miquelbeltran/flutter95/raw/master/art/menu95.png" alt="Screenshot" width="200"/>
 
 * Easy API wrapping Material's `showMenu`.
+* Highlights the item under the mouse or finger.
+* Supports separators with `MenuDivider95`.
 
 ```dart
 Menu95(
@@ -66,6 +68,7 @@ Menu95(
       value: 2,
       label: 'Open',
     ),
+    const MenuDivider95(),
     MenuItem95(
       value: 3,
       label: 'Exit',

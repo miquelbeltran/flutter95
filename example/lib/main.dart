@@ -153,6 +153,7 @@ class MainScreen extends StatelessWidget {
           value: 2,
           label: 'Open',
         ),
+        const MenuDivider95(),
         MenuItem95(
           value: 3,
           label: 'Exit',
