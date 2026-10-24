@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0
+
+- feat: Win95 styling for Menu95 (highlight, separators, padding) (#34) (2026-10-24)
+
 ## 1.4.0
 
 - Custom widgets on header for WindowHeader95/Scaffold95 (#32) (2026-02-03)
