@@ -1,41 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../flutter95.dart';
-import 'globals.dart';
-
-Future<T?> showMenu95<T>(
-  BuildContext context,
-  RelativeRect position,
-  List<MenuEntry95> items,
-) async {
-  final List<PopupMenuEntry<T>> entries = items.map((item) {
-    return switch (item) {
-      MenuItem95() => PopupMenuItem<T>(
-          value: item.value,
-          height: 24,
-          padding: EdgeInsets.zero,
-          child: _MenuItemLabel95(
-            label: item.label,
-          ),
-        ),
-      MenuDivider95() => _MenuSeparator95<T>(),
-    };
-  }).toList();
-
-  return showMenu(
-    context: context,
-    position: position,
-    shape: Border(
-      top: const BorderSide(color: Flutter95.white, width: 1),
-      left: const BorderSide(color: Flutter95.white, width: 1),
-      bottom: BorderSide(color: Flutter95.grays[3], width: 1),
-      right: BorderSide(color: Flutter95.grays[3], width: 1),
-    ),
-    color: Flutter95.background,
-    elevation: 0,
-    items: entries,
-  );
-}
 
 class Menu95<T> {
   Menu95({
@@ -47,15 +12,16 @@ class Menu95<T> {
 
   final Function(T? item) onItemSelected;
 
-  void show(
-    BuildContext context,
-    RelativeRect position,
-  ) {
-    showMenu95(
-      context,
-      position,
-      items,
-    ).then((value) => onItemSelected(value));
+  Widget anchor({
+    required MenuController controller,
+    required Widget child,
+  }) {
+    return MenuAnchor(
+      controller: controller,
+      style: _menuStyle,
+      menuChildren: _buildMenuChildren(items, onItemSelected),
+      child: child,
+    );
   }
 }
 
@@ -67,77 +33,134 @@ class MenuItem95<T> extends MenuEntry95<T> {
   MenuItem95({
     required this.value,
     required this.label,
+    this.enabled = true,
   }) : assert(value != null);
 
   final T value;
   final String label;
+  final bool enabled;
+}
+
+class Submenu95<T> extends MenuEntry95<T> {
+  const Submenu95({
+    required this.label,
+    required this.items,
+  });
+
+  final String label;
+  final List<MenuEntry95<T>> items;
 }
 
 class MenuDivider95<T> extends MenuEntry95<T> {
   const MenuDivider95();
 }
 
-class _MenuItemLabel95 extends StatefulWidget {
-  const _MenuItemLabel95({
-    required this.label,
+const _menuStyle = MenuStyle(
+  padding: WidgetStatePropertyAll(EdgeInsets.zero),
+  elevation: WidgetStatePropertyAll(0),
+  shape: WidgetStatePropertyAll(RoundedRectangleBorder()),
+  visualDensity: VisualDensity.standard,
+);
+
+List<Widget> _buildMenuChildren<T>(
+  List<MenuEntry95<T>> items,
+  Function(T? item) onItemSelected,
+) {
+  final entries = items.map((item) {
+    return switch (item) {
+      MenuItem95() => MenuItemButton(
+          onPressed: item.enabled ? () => onItemSelected(item.value) : null,
+          style: _itemStyle(),
+          child: Text(item.label),
+        ),
+      Submenu95() => _Submenu95<T>(
+          submenu: item,
+          onItemSelected: onItemSelected,
+        ),
+      MenuDivider95() => const Divider95(
+          height: 8,
+        ),
+    };
+  }).toList();
+
+  return [
+    Elevation95(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: entries,
+      ),
+    ),
+  ];
+}
+
+ButtonStyle _itemStyle({bool open = false}) {
+  bool highlighted(Set<WidgetState> states) =>
+      open ||
+      states.contains(WidgetState.hovered) ||
+      states.contains(WidgetState.focused) ||
+      states.contains(WidgetState.pressed);
+
+  Color foreground(Set<WidgetState> states) {
+    if (states.contains(WidgetState.disabled)) {
+      return Flutter95.grays[3];
+    }
+    return highlighted(states) ? Flutter95.white : Flutter95.black;
+  }
+
+  return ButtonStyle(
+    backgroundColor: WidgetStateProperty.resolveWith((states) =>
+        highlighted(states) && !states.contains(WidgetState.disabled)
+            ? Flutter95.headerDark
+            : Flutter95.background),
+    foregroundColor: WidgetStateProperty.resolveWith(foreground),
+    iconColor: WidgetStateProperty.resolveWith(foreground),
+    overlayColor: const WidgetStatePropertyAll(Colors.transparent),
+    textStyle: WidgetStateProperty.resolveWith((states) =>
+        states.contains(WidgetState.disabled)
+            ? Flutter95.disabledTextStyle
+            : Flutter95.textStyle),
+    padding: const WidgetStatePropertyAll(
+      EdgeInsets.symmetric(horizontal: 16),
+    ),
+    minimumSize: const WidgetStatePropertyAll(Size(0, 24)),
+    maximumSize: const WidgetStatePropertyAll(Size(double.infinity, 24)),
+    shape: const WidgetStatePropertyAll(RoundedRectangleBorder()),
+    visualDensity: VisualDensity.standard,
+    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    animationDuration: Duration.zero,
+  );
+}
+
+class _Submenu95<T> extends StatefulWidget {
+  const _Submenu95({
+    required this.submenu,
+    required this.onItemSelected,
   });
 
-  final String label;
+  final Submenu95<T> submenu;
+  final Function(T? item) onItemSelected;
 
   @override
-  State<_MenuItemLabel95> createState() => _MenuItemLabel95State();
+  State<_Submenu95<T>> createState() => _Submenu95State<T>();
 }
 
-class _MenuItemLabel95State extends State<_MenuItemLabel95> {
-  bool _highlighted = false;
+class _Submenu95State<T> extends State<_Submenu95<T>> {
+  bool _open = false;
 
   @override
   Widget build(BuildContext context) {
-    final bool highlighted =
-        _highlighted || (Focus.maybeOf(context)?.hasPrimaryFocus ?? false);
-    return MouseRegion(
-      onEnter: (event) => setState(() => _highlighted = true),
-      onExit: (event) => setState(() => _highlighted = false),
-      child: Listener(
-        onPointerDown: (event) => setState(() => _highlighted = true),
-        onPointerUp: (event) => setState(() => _highlighted = false),
-        onPointerCancel: (event) => setState(() => _highlighted = false),
-        child: Container(
-          width: double.infinity,
-          height: 24,
-          color: highlighted ? Flutter95.headerDark : Flutter95.background,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          alignment: Alignment.centerLeft,
-          child: Text(
-            widget.label,
-            style: highlighted
-                ? Flutter95.textStyle.copyWith(color: Flutter95.white)
-                : Flutter95.textStyle,
-          ),
-        ),
+    return SubmenuButton(
+      onOpen: () => setState(() => _open = true),
+      onClose: () => setState(() => _open = false),
+      style: _itemStyle(open: _open),
+      menuStyle: _menuStyle,
+      alignmentOffset: const Offset(0, -3),
+      menuChildren: _buildMenuChildren(
+        widget.submenu.items,
+        widget.onItemSelected,
       ),
-    );
-  }
-}
-
-class _MenuSeparator95<T> extends PopupMenuEntry<T> {
-  const _MenuSeparator95();
-
-  @override
-  double get height => 8;
-
-  @override
-  bool represents(T? value) => false;
-
-  @override
-  State<_MenuSeparator95<T>> createState() => _MenuSeparator95State<T>();
-}
-
-class _MenuSeparator95State<T> extends State<_MenuSeparator95<T>> {
-  @override
-  Widget build(BuildContext context) {
-    return const Divider95(
-      height: 8,
+      child: Text(widget.submenu.label),
     );
   }
 }
