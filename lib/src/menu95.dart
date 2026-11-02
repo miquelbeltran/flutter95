@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../flutter95.dart';
-import 'globals.dart';
 
 class Menu95<T> {
   Menu95({
