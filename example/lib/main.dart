@@ -153,6 +153,24 @@ class MainScreen extends StatelessWidget {
           value: 2,
           label: 'Open',
         ),
+        Submenu95(
+          label: 'Recent',
+          items: [
+            MenuItem95(
+              value: 4,
+              label: 'notes.txt',
+            ),
+            MenuItem95(
+              value: 5,
+              label: 'todo.txt',
+            ),
+          ],
+        ),
+        MenuItem95(
+          value: 6,
+          label: 'Save',
+          enabled: false,
+        ),
         const MenuDivider95(),
         MenuItem95(
           value: 3,

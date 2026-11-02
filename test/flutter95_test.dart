@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter95/flutter95.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -229,8 +230,8 @@ void main() {
       await tester.pumpAndSettle();
 
       Color? background() => tester
-          .widget<Container>(find
-              .ancestor(of: find.text('New'), matching: find.byType(Container))
+          .widget<Material>(find
+              .ancestor(of: find.text('New'), matching: find.byType(Material))
               .first)
           .color;
 
@@ -243,8 +244,107 @@ void main() {
       await tester.pump();
 
       expect(background(), Flutter95.headerDark);
+    });
+
+    testWidgets('Highlights item on keyboard focus', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Toolbar95(
+            actions: [
+              Item95(
+                label: 'File',
+                menu: Menu95(
+                  items: [
+                    MenuItem95(value: 1, label: 'New'),
+                  ],
+                  onItemSelected: (item) {},
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('File'));
+      await tester.pumpAndSettle();
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+      await tester.pump();
+
       expect(
-          tester.widget<Text>(find.text('New')).style?.color, Flutter95.white);
+        tester
+            .widget<Material>(find
+                .ancestor(of: find.text('New'), matching: find.byType(Material))
+                .first)
+            .color,
+        Flutter95.headerDark,
+      );
+    });
+
+    testWidgets('Can open submenu', (tester) async {
+      int? selected;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Toolbar95(
+            actions: [
+              Item95(
+                label: 'File',
+                menu: Menu95(
+                  items: [
+                    MenuItem95(value: 1, label: 'New'),
+                    Submenu95(
+                      label: 'Recent',
+                      items: [
+                        MenuItem95(value: 2, label: 'notes.txt'),
+                      ],
+                    ),
+                  ],
+                  onItemSelected: (item) => selected = item,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('File'));
+      await tester.pumpAndSettle();
+      expect(find.text('notes.txt'), findsNothing);
+
+      await tester.tap(find.text('Recent'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('notes.txt'));
+      await tester.pumpAndSettle();
+
+      expect(selected, 2);
+    });
+
+    testWidgets('Disabled item cannot be selected', (tester) async {
+      int? selected;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Toolbar95(
+            actions: [
+              Item95(
+                label: 'File',
+                menu: Menu95(
+                  items: [
+                    MenuItem95(value: 1, label: 'Paste', enabled: false),
+                  ],
+                  onItemSelected: (item) => selected = item,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('File'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Paste'));
+      await tester.pumpAndSettle();
+
+      expect(selected, isNull);
+      expect(find.text('Paste'), findsOneWidget);
     });
   });
 }

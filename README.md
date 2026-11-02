@@ -53,9 +53,11 @@ Windows95 styled menu.
 
 <img src="https://github.com/miquelbeltran/flutter95/raw/master/art/menu95.png" alt="Screenshot" width="200"/>
 
-* Easy API wrapping Material's `showMenu`.
+* Easy API wrapping Material's `MenuAnchor`.
 * Highlights the item under the mouse or finger.
 * Supports separators with `MenuDivider95`.
+* Supports submenus with `Submenu95`.
+* Disable items with `enabled: false`.
 
 ```dart
 Menu95(
@@ -68,6 +70,15 @@ Menu95(
       value: 2,
       label: 'Open',
     ),
+    Submenu95(
+      label: 'Recent',
+      items: [
+        MenuItem95(
+          value: 4,
+          label: 'notes.txt',
+        ),
+      ],
+    ),
     const MenuDivider95(),
     MenuItem95(
       value: 3,
@@ -78,12 +89,17 @@ Menu95(
 );
 ```
 
-* Display using `show(context, position)`.
+* Attach it to any widget using `anchor(controller: controller, child: child)`, then call `controller.open()`.
 
 ```dart
-menu.show(
-  context,
-  Offset(50, 100),
+final controller = MenuController();
+
+menu.anchor(
+  controller: controller,
+  child: Button95(
+    onTap: () => controller.open(),
+    child: const Text('Menu'),
+  ),
 );
 ```
 

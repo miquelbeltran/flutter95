@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 import '../flutter95.dart';
 
@@ -41,10 +41,11 @@ class Item95 extends StatefulWidget {
 
 class _Item95State extends State<Item95> {
   bool _tapped = false;
+  final _menuController = MenuController();
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
+    final item = ConstrainedBox(
       constraints: const BoxConstraints(
         maxHeight: 24,
       ),
@@ -83,20 +84,25 @@ class _Item95State extends State<Item95> {
         ),
       ),
     );
+
+    if (widget.menu == null) {
+      return item;
+    }
+    return widget.menu!.anchor(
+      controller: _menuController,
+      child: item,
+    );
   }
 
   bool _enabled() {
     return widget.onTap != null || widget.menu != null;
   }
 
-  _onTap(BuildContext context) {
+  void _onTap(BuildContext context) {
     if (widget.menu != null) {
-      widget.menu!.show(
-        context,
-        context.rect.shift(const Offset(0, 24)),
-      );
+      _menuController.isOpen ? _menuController.close() : _menuController.open();
     } else if (_enabled()) {
-      return widget.onTap!(context);
+      widget.onTap!(context);
     }
   }
 }
