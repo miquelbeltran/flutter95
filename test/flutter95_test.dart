@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter95/flutter95.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -244,6 +245,14 @@ void main() {
       await tester.pump();
 
       expect(background(), Flutter95.headerDark);
+      expect(
+        tester
+            .renderObject<RenderParagraph>(find.text('New'))
+            .text
+            .style
+            ?.color,
+        Flutter95.white,
+      );
     });
 
     testWidgets('Highlights item on keyboard focus', (tester) async {

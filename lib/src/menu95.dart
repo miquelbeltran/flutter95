@@ -128,6 +128,7 @@ ButtonStyle _itemStyle({bool open = false}) {
     shape: const WidgetStatePropertyAll(RoundedRectangleBorder()),
     visualDensity: VisualDensity.standard,
     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    animationDuration: Duration.zero,
   );
 }
 
